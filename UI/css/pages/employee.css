@@ -1,0 +1,73 @@
+.m-page-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    width: 100%;
+}
+
+.m-page-header .m-page-tittle {
+    font-size: 20px;
+    font-weight: 700px;
+}
+
+.m-page-header .m-page-button {
+    position: absolute;
+    right: 0;
+}
+
+.m-page-content-container {
+    height: calc(100% - 48px);
+    width: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 16px 16px 0 16px;
+    box-sizing: border-box;
+}
+
+.m-page-toolbar {
+    height: 48px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.m-page-grid {
+    width: 100%;
+    height: calc(100% - 48px);
+}
+
+.m-page-grid .m-table-wrapper {
+    max-height: calc(100% - 56px);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.m-page-toolbar .m-toolbar-right {
+    position: absolute;
+    right: 0;
+    text-align: right;
+}
+
+.m-page-toolbar .m-toolbar-right .m-btn-refresh {
+    height: 40px;
+    width: 40px;
+    background-image: url(../../assets/icon/refresh.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+    cursor: pointer;
+}
+
+.m-page-toolbar .m-toolbar-right .m-btn-excel {
+    height: 40px;
+    width: 40px;
+    background-image: url(../../assets/icon/export-excel-50.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+    cursor: pointer;
+}

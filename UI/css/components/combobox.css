@@ -1,0 +1,90 @@
+/* select {
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+} */
+
+.combobox-container {
+    position: relative;
+    display: inline-block;
+}
+.combobox {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding-left: 12px;
+    padding-right: 30px; /* space for the dropdown icon */
+    font-size: 13px;
+    color: #000;
+    cursor: pointer;
+    appearance: none; /* Remove default dropdown arrow */
+}
+.combobox::placeholder {
+    color: #bbb;
+}
+.combobox:focus, .combobox.selected {
+    outline: none;
+    border-color: #019160;
+}
+/* .combobox-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    width: 16px;
+    height: 16px;
+    background: url('../../assets/icon/btn-next-page.svg') no-repeat center;
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+} */
+.combobox-container.selected::after {
+    transform: translateY(-50%) rotate(-90deg);
+}
+.dropdown {
+    position: absolute;
+    min-width: 200px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    margin-top: 2px;
+    max-height: 120px; /* 3 items, each 40px tall */
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    background-color: #fff;
+}
+.dropdown-item {
+    padding: 10px 12px 10px 36px;
+    height: 40px;
+    font-size: 13px;
+    color: #000;
+    cursor: pointer;
+}
+.dropdown-item:hover {
+    background-color: #E9EBEE;
+}
+.dropdown-item.selected {
+    background-color: #019160;
+    color: white;
+}
+/* .dropdown-item.selected::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    
+} */
+
+.m-combobox-containter {
+    width: 200px;
+}
+
+.m-combobox-containter .m-combobox {
+    border: 1px solid #bbb;
+    height: 40px;
+    width: 100%;
+    display: flex;
+}

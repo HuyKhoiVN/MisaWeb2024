@@ -1,0 +1,53 @@
+.m-icon{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.m-icon-search {
+    background-image: url(../../assets/icon/search.png);
+}
+
+.m-icon-dashboard {
+    background-image: url(../../assets/icon/dashboard.png);
+}
+
+.m-icon-16 {
+    background-size: 16px 16px;
+}
+
+.m-icon-employee {
+    background-image: url(../../assets/icon/dic-employee.png);
+}
+
+.m-icon-document {
+    background-image: url(../../assets/icon/document-online.png);
+}
+
+.m-icon-setting {
+    background-image: url(../../assets/icon/setting.png);
+}
+
+.m-icon-combobox {
+    background-image: url(../../assets/icon/btn-next-page.svg);
+}
+
+.m-icon-success {
+    background-image: url(../../assets/icon/success-48.png);
+}
+
+.m-icon-option {
+    background-image: url(../../assets/icon/option.png);
+}
+
+.m-icon-next {
+    background-image: url(../../assets/icon/btn-prev-page.svg);
+}
+
+.m-icon-prev {
+    background-image: url(../../assets/icon/btn-next-page.svg);
+}
+
+.m-icon-close {
+    background-image: url(../../assets/icon/x.svg);
+}

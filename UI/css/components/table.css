@@ -1,0 +1,92 @@
+.m-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: unset;
+    border: unset;
+}
+
+.m-table tr {
+    height: 40px;
+    border: 1px solid #bbbbbb;
+    border-right: unset;
+}
+
+.m-table tr td,
+th {
+    padding-left: 16px;
+    padding-right: 10px;
+    border-right: 1px solid #bbbbbb;
+}
+
+.m-table tr th {
+    border-bottom: unset;
+}
+
+.m-table th {
+    background-color: #EEEEEE;
+}
+
+.m-table .text-align-left {
+    text-align: left;
+}
+
+.m-table .text-align-right {
+    text-align: right;
+}
+
+.m-table .text-align-center {
+    text-align: center;
+}
+
+.m-table tbody tr:hover {
+    background-color: #E9EBEE;
+    cursor: pointer;
+}
+
+.m-table tbody tr.row-selected {
+    background-color: #E3F3EE;
+}
+
+.m-table tbody .row-selected .col-address {
+    position: relative;
+    display: flex;
+    height: 40.5px;
+    align-items: center;
+}
+
+.m-table tbody .row-selected .m-table-action button {
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: auto 4px;
+    cursor: pointer;
+    border: unset;
+    background-color: #bbb;
+}
+
+.m-table tbody .row-selected .m-table-action button i {
+    margin: auto auto;
+    font-size: 16px;
+}
+
+.m-table-action .btn-edit, 
+.btn-copy 
+{
+    color: #019160;
+}
+
+.m-table-action .btn-delete {
+    color: red;
+}
+
+.m-table-action {
+    display: none;
+}
+
+.m-table tbody .row-selected .m-table-action {
+    position: absolute;
+    right: 0;
+    margin-right: 16px;
+    display: block;
+}

@@ -1,0 +1,52 @@
+.navbar {
+    width: 226px;
+    height: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-right: 1px solid #bbbbbb;
+    background-color: #001833;
+    position: relative;
+    transition: width 0.3s;
+    overflow: hidden;
+}
+
+.navbar.collapsed {
+    width: 46px;
+}
+
+.menu-item {
+    height: 44px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+}
+
+.menu-item:hover {
+    background-color: #99CAFF;
+}
+
+.menu-item.menu-item-focus {
+    background-color: #004999;
+    color: #fff;
+}
+
+.menu-icon {
+    margin-left: 16px;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    filter: invert(100%);
+}
+
+.menu-item.menu-item-bottom {
+    position: absolute;
+    bottom: 0;
+}
+.menu-icon.m-icon.m-icon-next {
+    background-size: 25px;
+    filter: invert(100%);
+}

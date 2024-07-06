@@ -1,0 +1,93 @@
+.m-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.589);
+    z-index: 10000;
+}
+
+.m-dialog .m-dialog-content {
+    position: absolute;
+    /* max-width: 896px; */
+    background-color: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+}
+
+.m-dialog .m-dialog-header {
+    width: 100%;
+    padding: 12px;
+}
+
+.m-dialog .m-dialog-header button.m-dialog-close {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    border: unset;
+    background-color: unset;
+    top: 0;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.m-dialog .m-dialog-header button.m-dialog-close:hover {
+    background-color: #ccc;
+}
+
+.m-dialog .m-dialog-body {
+    padding: 0 24px 8px 24px;
+}
+
+.m-dialog .m-dialog-body .combobox-containner {
+    height: 100%;
+}
+
+.m-dialog .m-dialog-body .cbBranch.combobox{
+    line-height: 40px;
+}
+
+.gender-radio {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+}
+.gender-radio label {
+    display: flex;
+    align-items: center;
+}
+
+.m-row-col-4 .m-combobox .m-dropdown {
+    border: 1px solid #bbb;
+    width: 100%;    
+    border-radius: 4px;
+    border-top: unset;
+}
+.m-row-col-4 .m-combobox .m-dropdown-item {
+    height: 44px;
+    background-color: #fff;
+    padding-left: 16px;
+    line-height: 44px;
+}
+
+.m-row-flex input {
+    width: 100%;
+}
+
+.m-dialog .m-dialog-footer {
+    bottom: 0;
+    text-align: right;
+    width: 100%;
+    height: 56px;
+    padding-right: 16px;
+    box-sizing: border-box;
+}

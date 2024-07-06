@@ -1,0 +1,76 @@
+@import url(../css/components/button.css);
+@import url(../css/components/input.css);
+@import url(../css/components/icon.css);
+@import url(../css/components/toast.css);
+@import url(../css/components/table.css);
+@import url(../css/components/paging.css);
+@import url(../css/components/dialog.css);
+@import url(../css/components/combobox.css);
+@import url(../assets/font/fontawesome-5.15.1/css/all.min.css);
+@import url(../assets/font/fontawesome-5.15.1/js/all.min.js);
+@import url(./layout/content.css);
+@import url(./layout/header.css);
+@import url(./layout/navbar.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: GoogleSans;
+    font-size: 13px;
+}
+
+@font-face {
+    font-family: GoogleSans;
+    src: url("../assets/font/GoogleSans-Regular.otf");
+}
+
+@font-face {
+    font-family: GoogleSans Bold;
+    src: url("../assets/font/GoogleSans-Bold.otf");
+}
+
+@font-face {
+    font-family: GoogleSans Italic;
+    src: url("../assets/font/GoogleSans-Italic.otf");
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 48px);
+}
+
+.m-row {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.require {
+    color: red;
+}
+
+.m-row-flex {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 16px;
+}
+
+.m-no-padding {
+    padding: 0;
+}
+
+.m-row-col-4 {
+    flex: 1;
+    min-width: 200px; /* Điều chỉnh độ rộng tối thiểu theo nhu cầu của bạn */
+    display: flex;
+    flex-direction: column;
+}
+
+.m-col {
+    width: 100%;
+}
+

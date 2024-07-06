@@ -1,0 +1,126 @@
+.m-paging {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.m-paging .m-page-number-group {
+    display: flex;
+}
+
+.m-paging .m-paging-center {
+    display: flex;
+}
+
+.m-paging button {
+    width: 30px;
+    height: 30px;
+    margin: 4px;
+    cursor: pointer;
+    line-height: 30px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.m-paging .m-page-number-group button.m-page-number {
+    border-radius: 50%;
+    border: 1px solid #BBBBBB;
+}
+
+.m-paging .m-page-number-group button.m-page-number:hover {
+    border: 1px solid #BBBBBB;
+    background-color: #fff;
+    color: #000;
+}
+
+.m-paging .m-page-number-group button.m-page-number-selected {
+    background-color: #019160;
+    color: #fff;
+}
+
+.m-paging .m-paging-left {
+    position: absolute;
+    left: 0px;
+    font-size: 15px;
+}
+
+.m-paging .m-paging-right {
+    position: absolute;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.m-paging-right .text-total {
+    font-size: 15px;
+}
+
+.btn-page {
+    border: unset;
+    background-color: unset;
+    background-size: 25px;
+}
+
+.m-paging-right .selectContainer {
+    margin: auto 0;
+}
+
+.m-paging-right .selectBox {
+    border: unset;
+    align-items: center;
+    background-color: unset;
+}
+
+.selectBox {
+    font-family: 'Google Sans';
+    font-weight: bold; /* Use the bold weight */
+    font-size: 13px;
+    color: #000;
+}
+
+.selectBox option {
+    padding: 10px; /* padding for select items */
+    font-family: 'Google Sans';
+    font-weight: bold; /* Use the bold weight */
+    font-size: 13px;
+    color: #000;
+}
+
+
+.m-page-grid {
+    position: relative;
+}
+
+.m-page-grid .m-paging{
+    position: absolute;
+    bottom: 0;
+}
+
+.m-paging-right .combobox-container {
+    width: 50px;
+}
+
+.m-paging-right .combobox-container .cbBranch.combobox.m-input {
+    width: 100%;
+    text-align: center;
+}
+
+.m-paging-right .combobox-container .pagingDropdown.dropdown {
+    min-width: unset;
+    width: 50px;
+    border: 1px solid #bbb;
+    position: absolute;
+    right: 50px; 
+    transform: translateX(50%)
+}
+
+.m-paging-right .combobox-container .pagingDropdown .dropdown-item {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+    line-height: 44px;
+}
