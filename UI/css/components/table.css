@@ -50,8 +50,9 @@ th {
 .m-table tbody .row-selected .col-address {
     position: relative;
     display: flex;
-    height: 40.5px;
+    height: 40px;
     align-items: center;
+    min-width: 500px;
 }
 
 .m-table tbody .row-selected .m-table-action button {
@@ -63,6 +64,10 @@ th {
     cursor: pointer;
     border: unset;
     background-color: #bbb;
+}
+
+.m-table tbody .row-selected .m-table-action button:hover {
+    background-color: #E9EBEE;
 }
 
 .m-table tbody .row-selected .m-table-action button i {

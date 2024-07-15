@@ -1,67 +1,74 @@
+// Hàm chuyển đổi trạng thái hiển thị dropdown
 function toggleDropdown(containerId, dropdownId) {
-    const dropdown = document.getElementById(dropdownId);
-    const comboboxContainer = document.getElementById(containerId);
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    if (dropdown.style.display === 'block') {
-        comboboxContainer.classList.add('active');
+    const $dropdown = $('#' + dropdownId);
+    const $comboboxContainer = $('#' + containerId);
+    $dropdown.toggle(); // Chuyển đổi hiển thị giữa block và none
+    if ($dropdown.is(':visible')) {
+        $comboboxContainer.addClass('active');
     } else {
-        comboboxContainer.classList.remove('active');
+        $comboboxContainer.removeClass('active');
     }
 }
 
+// Hàm chọn một mục trong dropdown có icon
 function selectItem(item, containerId, inputId) {
-    const comboboxInput = document.getElementById(inputId);
-    comboboxInput.innerHTML = item.innerText + ' <i class="fas fa-chevron-down"></i>';
-    
-    const selectedItem = document.querySelector(`#${containerId} .dropdown-item.selected`);
-    if (selectedItem) {
-        selectedItem.classList.remove('selected');
-    }
-    
-    item.classList.add('selected');
-    
-    comboboxInput.classList.add('selected');
-    
-    toggleDropdown(containerId, item.parentNode.id);
+    const $item = $(item);
+    const $comboboxInput = $('#' + inputId);
+    $comboboxInput.html($item.text() + ' <i class="fas fa-chevron-down"></i>'); // Cập nhật nội dung của input
+
+    const $selectedItem = $('#' + containerId + ' .dropdown-item.selected');
+    $selectedItem.removeClass('selected'); // Bỏ chọn mục đã chọn trước đó
+
+    $item.addClass('selected'); // Đánh dấu mục được chọn
+
+    $comboboxInput.addClass('selected'); // Đánh dấu input là đã chọn
+
+    toggleDropdown(containerId, $item.parent().attr('id')); // Chuyển đổi trạng thái dropdown
 }
 
-//no icon
+// Hàm chọn một mục trong dropdown không có icon trỏ xuống
 function selectItemNoIcon(item, containerId, inputId) {
-    const comboboxInput = document.getElementById(inputId);
-    comboboxInput.innerHTML = item.innerText;
-    
-    const selectedItem = document.querySelector(`#${containerId} .dropdown-item.selected`);
-    if (selectedItem) {
-        selectedItem.classList.remove('selected');
-    }
-    
-    item.classList.add('selected');
-    
-    comboboxInput.classList.add('selected');
-    
-    toggleDropdown(containerId, item.parentNode.id);
+    const $item = $(item);
+    const $comboboxInput = $('#' + inputId);
+    $comboboxInput.html($item.text()); // Cập nhật nội dung của input
+    $comboboxInput.attr('mvalue', $item.attr('mvalue')); // Gán thuộc tính mvalue
+
+    const $selectedItem = $('#' + containerId + ' .dropdown-item.selected');
+    $selectedItem.removeClass('selected'); // Bỏ chọn mục đã chọn trước đó
+
+    $item.addClass('selected'); // Đánh dấu mục được chọn
+
+    $comboboxInput.addClass('selected'); // Đánh dấu input là đã chọn
+
+    toggleDropdown(containerId, $item.parent().attr('id')); // Chuyển đổi trạng thái dropdown
 }
 
+// Hàm lọc các mục trong dropdown
 function filterItems(containerId, inputId) {
-    const comboboxInput = document.getElementById(inputId);
-    const filter = comboboxInput.value.toLowerCase();
-    const items = document.querySelectorAll(`#${containerId} .dropdown-item`);
-    items.forEach(item => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(filter) ? '' : 'none';
+    const $comboboxInput = $('#' + inputId);
+    const filter = $comboboxInput.val().toLowerCase(); // Lấy giá trị input và chuyển thành chữ thường
+    const $items = $('#' + containerId + ' .dropdown-item');
+    $items.each(function() {
+        const $item = $(this);
+        const text = $item.text().toLowerCase(); // Lấy nội dung mục và chuyển thành chữ thường
+        $item.toggle(text.includes(filter)); // Hiển thị hoặc ẩn mục dựa trên bộ lọc
     });
 }
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-    const containers = document.querySelectorAll('.combobox-container');
-    containers.forEach(container => {
-        const dropdown = container.querySelector('.dropdown');
-        if (dropdown && dropdown.style.display === 'block') {
-            if (!container.contains(event.target)) {
-                dropdown.style.display = 'none';
-                container.classList.remove('active');
-            }
+// Đóng dropdown nếu người dùng nhấp ra ngoài
+$(window).on('click', function(event) {
+    const $containers = $('.combobox-container');
+    $containers.each(function() {
+        const $container = $(this);
+        const $dropdown = $container.find('.dropdown');
+        if ($dropdown.is(':visible') && !$container.is(event.target) && !$container.has(event.target).length) {
+            $dropdown.hide(); // Ẩn dropdown
+            $container.removeClass('active'); // Bỏ đánh dấu active
         }
     });
-}
+});
+
+// Ngăn chặn sự kiện click của dropdown lan ra ngoài
+$('.dropdown').on('click', function(event) {
+    event.stopPropagation();
+});

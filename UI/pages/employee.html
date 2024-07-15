@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <div id="toastBox" class="m-toast-box"></div>
     <!-- header start -->
     <div class="header">
         <div class="header-left">
@@ -19,10 +20,10 @@
         <div class="header-right">
             <div class="header-right-branch">
                 <div class="combobox-container" id="combobox-container">
-                    <div class="cbBranch combobox m-input" onclick="toggleDropdown('combobox-container', 'dropdown')" id="combobox-input">Chi nhánh Hà Nội <i class="fas fa-chevron-down"></i></div>
+                    <div class="cbBranch combobox m-input" onclick="toggleDropdown('combobox-container', 'dropdown')" id="cbxBranch">Chi nhánh Hà Nội <i class="fas fa-chevron-down"></i></div>
                     <div class="dropdown" id="dropdown">
-                        <div class="dropdown-item" onclick="selectItem(this, 'combobox-container', 'combobox-input')">Chi nhánh Hà Nội</div>
-                        <div class="dropdown-item" onclick="selectItem(this, 'combobox-container', 'combobox-input')">Chi nhánh Hồ Chí Minh</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'combobox-container', 'cbxBranch')">Chi nhánh Hà Nội</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'combobox-container', 'cbxBranch')">Chi nhánh Hồ Chí Minh</div>
                     </div>
                 </div>
             </div>
@@ -89,522 +90,20 @@
                 <div class="m-page-grid">
                     <div class="m-table-wrapper">
                         <!-- table dât -->
-                        <table class="m-table">
+                        <table id="tableEmployee" class="m-table">
                             <thead>
                                 <tr>
                                     <th class="text-align-left" style="width: 20px;">STT</th>
-                                    <th class="text-align-left" style="width: 100px;">Mã nhân viên</th>
-                                    <th class="text-align-left" style="min-width: 170px;">Họ và tên</th>
-                                    <th class="text-align-left" style="width: 70px;">Giới tính</th>
+                                    <th class="text-align-left" style="width: 120px;">Mã nhân viên</th>
+                                    <th class="text-align-left" style="width: 250px;">Họ và tên</th>
+                                    <th class="text-align-left" style="width: 130px;">Giới tính</th>
                                     <th class="text-align-center" style="width: 100px;">Ngày sinh</th>
-                                    <th class="text-align-left" style="width: 150px;">Địa chỉ email</th>
+                                    <th class="text-align-left" style="width: 250px;">Địa chỉ email</th>
                                     <th class="text-align-left" >Địa chỉ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="row-selected">
-                                    <td class="text-align-left">
-                                        01
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        02
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        02
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        02
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        02
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        02
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        02
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        02
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-align-left">
-                                        03
-                                        <!-- <input type="checkbox"  name="" id="" checked> -->
-                                    </td>
-                                    <td class="text-align-left">NV001</td>
-                                    <td class="text-align-left">Nguyễn Văn Mạnh</td>
-                                    <td class="text-align-left">Nam</td>
-                                    <td class="text-align-center">22/09/1996</td>
-                                    <td class="text-align-left">kthuziabk12@gmail.com</td>
-                                    <td class="text-align-left col-address">
-                                        <div class="addrInfor">
-                                            104 nhà K, ngõ 72 Lĩnh Nam
-                                        </div>
-                                        <div class="m-table-action">
-                                            <button id="btnEdit" class="btn-edit">
-                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button id="btnCopy" class="btn-copy">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                            <button id="btnDelete" class="btn-delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -646,29 +145,29 @@
                                 <div class="m-row-col-4">
                                     <label for="">Mã nhân viên <span class="require">*</span></label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input" placeholder="Tim kiem theo ten">
+                                        <input id="txtEmployeeCode" required type="text" class="m-input" placeholder="Mã nhân viên">
                                     </div>
                                 </div>
     
                                 <div class="m-row-col-4">
                                     <label for="">Họ và tên <span class="require">*</span></label>
                                     <div class="m-row">
-                                        <input type="text" class="m-input" placeholder="Tim kiem theo ten">
+                                        <input id="txtFullName" required type="text" class="m-input" placeholder="Họ và tên">
                                     </div>
                                 </div>
                                 <div class="m-row-col-4">
                                     <label for="">Ngày sinh</label>
                                     <div class="m-row">
-                                        <input type="date" class="m-input">
+                                        <input id="dtDateOfBirth" type="date" class="m-input">
                                     </div>
                                 </div>
                                 <div class="m-row-col-4">
                                     <label for="">Giới tính</label>
                                     <div class="m-row">
-                                        <div class="gender-radio">
-                                            <label><input type="radio" name="gender" value="male"> Nam</label>
-                                            <label><input type="radio" name="gender" value="female"> Nữ</label>
-                                            <label><input type="radio" name="gender" value="other"> Khác</label>
+                                        <div id="rdGender" class="gender-radio">
+                                            <label><input type="radio" name="gender" value="1"> Nam</label>
+                                            <label><input type="radio" name="gender" value="0"> Nữ</label>
+                                            <label><input type="radio" name="gender" value="2"> Khác</label>
                                         </div>
                                     </div>
                                 </div>
@@ -679,11 +178,11 @@
                                     <label for="">Vị trí</label>
                                     <div class="m-row">
                                         <div class="m-col combobox-container" id="combobox-container-position">
-                                            <div class="cbBranch combobox m-input" onclick="toggleDropdown('combobox-container-position', 'dropdown-position')" id="combobox-input-position">Kỹ thuật viên</div>
+                                            <div class="cbBranch combobox m-input" mvalue="1" onclick="toggleDropdown('combobox-container-position', 'dropdown-position')" id="cbxPositionId">Kỹ thuật viên</div>
                                             <div class="dropdown" id="dropdown-position">
-                                                <div class="dropdown-item" onclick="selectItemNoIcon(this, 'combobox-container-position', 'combobox-input-position')">Giám đốc</div>
-                                                <div class="dropdown-item" onclick="selectItemNoIcon(this, 'combobox-container-position', 'combobox-input-position')">Trưởng bộ phận</div>
-                                                <div class="dropdown-item" onclick="selectItemNoIcon(this, 'combobox-container-position', 'combobox-input-position')">Kỹ thuật viên</div>
+                                                <div class="dropdown-item" mvalue="1" onclick="selectItemNoIcon(this, 'combobox-container-position', 'cbxPositionId')">Giám đốc</div>
+                                                <div class="dropdown-item" mvalue="2" onclick="selectItemNoIcon(this, 'combobox-container-position', 'cbxPositionId')">Trưởng bộ phận</div>
+                                                <div class="dropdown-item" mvalue="3" onclick="selectItemNoIcon(this, 'combobox-container-position', 'cbxPositionId')">Kỹ thuật viên</div>
                                             </div>
                                         </div>
                                     </div>
@@ -693,14 +192,14 @@
                                     <div class="m-row-col-4">
                                         <label for="">Số CMTND</label> 
                                         <div class="m-row">
-                                            <input type="number" class="m-input">
+                                            <input id="txtIdentityNumber" type="number" class="m-input">
                                         </div>                                
                                     </div>
         
                                     <div class="m-row-col-4">
                                         <label for="">Ngày cấp</label> 
                                         <div class="m-row">
-                                            <input type="date" class="m-input">
+                                            <input id="txtIdentityDate" type="date" class="m-input">
                                         </div>
                                     </div>
                                 </div>
@@ -713,13 +212,13 @@
                                         <div class="m-col combobox-container" id="combobox-container-department">
                                             <div class="cbBranch combobox m-input"
                                                 onclick="toggleDropdown('combobox-container-department', 'dropdown-department')"
-                                                id="combobox-input-department">Phòng nhân sự</div>
+                                                id="cbxDepartmentId">Phòng nhân sự</div>
                                             <div class="dropdown" id="dropdown-department">
                                                 <div class="dropdown-item"
-                                                    onclick="selectItemNoIcon(this, 'combobox-container-department', 'combobox-input-department')">Phòng kỹ
+                                                    onclick="selectItemNoIcon(this, 'combobox-container-department', 'cbxDepartmentId')">Phòng kỹ
                                                     thuật</div>
                                                 <div class="dropdown-item"
-                                                    onclick="selectItemNoIcon(this, 'combobox-container-department', 'combobox-input-department')">Phòng hành
+                                                    onclick="selectItemNoIcon(this, 'combobox-container-department', 'cbxDepartmentId')">Phòng hành
                                                     chính</div>
                                             </div>
                                         </div>
@@ -729,7 +228,7 @@
                                 <div class="m-row-col-4">
                                     <label for="">Nơi cấp</label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input">
+                                        <input id="txtIdentityPlace" type="text" class="m-input">
                                     </div>
                                 </div>
                             </div>
@@ -738,7 +237,7 @@
                                 <div class="m-row-col-4">
                                     <label for="">Địa chỉ</label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input" placeholder="">
+                                        <input id="txtAddress" type="text" class="m-input" placeholder="">
                                     </div>                                
                                 </div>
                             </div>
@@ -747,21 +246,21 @@
                                 <div class="m-row-col-4">
                                     <label for="">ĐT di động</label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input">
+                                        <input id="txtPhoneNumber" phonenumber type="text" class="m-input">
                                     </div>                                
                                 </div>
     
                                 <div class="m-row-col-4">
                                     <label for="">ĐT cố định</label> 
                                     <div class="m-row">
-                                        <input type="number" class="m-input" >
+                                        <input id="txtLandlinePhone" type="text" class="m-input" >
                                     </div>
                                 </div>
     
                                 <div class="m-row-col-4">
                                     <label for="">Email</label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input" placeholder="example@sth.com">
+                                        <input id="txtEmail" email type="text" class="m-input" placeholder="example@sth.com">
                                     </div>
                                 </div>
                             </div>
@@ -770,31 +269,37 @@
                                 <div class="m-row-col-4">
                                     <label for="">Tài khoản ngân hàng</label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input">
+                                        <input id="txtBankAccount" type="text" class="m-input">
                                     </div>                                
                                 </div>
     
                                 <div class="m-row-col-4">
                                     <label for="">Tên ngân hàng</label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input" >
+                                        <input id="txtBankName" type="text" class="m-input" >
                                     </div>
                                 </div>
     
                                 <div class="m-row-col-4">
                                     <label for="">Chi nhánh</label> 
                                     <div class="m-row">
-                                        <input type="text" class="m-input">
+                                        <input id="txtBankBranch" type="text" class="m-input">
                                     </div>
                                 </div>
                             </div>  
                         </form>
                     </div>
                     <div class="m-dialog-footer">
-                        <button class="m-btn">Lưu</button>
+                        <button id="btnSave" class="m-btn">Lưu</button>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="m-loading">
+        <div class="m-loading-icon">
+
         </div>
     </div>
 
@@ -802,16 +307,7 @@
     <script src="../lib/jquery-3.7.1.js"></script>
     <script src="../lib/jquery-3.7.1.min.js"></script>
 
-    <!-- js page -->
-     <script src="../js/pages/employee.js"></script>
-
-    <!-- show dialog -->
-    <script>
-        document.getElementById('btnAdd').addEventListener('click', function () {
-            var dialog = document.getElementById("dlgDialog");
-            dialog.style.display = "block";
-        })
-    </script>
+    
 
     <!-- show navbar -->
     <script>
@@ -823,6 +319,10 @@
 
     <!-- show cbBox -->
     <script src="../js/components/combobox.js"></script>
+    <script src="../js/components/toast.js"></script>
+
+    <!-- js page -->
+    <script src="../js/pages/employee.js"></script>
 </body>
 
 </html>

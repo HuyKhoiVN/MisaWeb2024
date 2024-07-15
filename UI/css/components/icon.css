@@ -51,3 +51,7 @@
 .m-icon-close {
     background-image: url(../../assets/icon/x.svg);
 }
+
+.m-icon-calendar {
+    background-image: url(../../assets/icon/date-picker.svg);
+}
