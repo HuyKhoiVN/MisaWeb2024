@@ -78,13 +78,27 @@
     
 } */
 
-.m-combobox-containter {
-    width: 200px;
+.combobox-container input::placeholder {
+    color: #000;
+    font-size: 13px;
+    font-family: "GoogleSans";
 }
 
-.m-combobox-containter .m-combobox {
+select {
     border: 1px solid #bbb;
     height: 40px;
     width: 100%;
-    display: flex;
+    font-family: "GoogleSans";
+    font-size: 13px;
+    color: #000;
+    padding-left: 12px;
+    box-sizing: border-box;
+}
+
+option.m-combobox-item {
+    height: 40px; /* Thiết lập chiều cao cho các item */
+}
+
+.m-combobox-item:hover {
+    background-color: #019160;
 }
