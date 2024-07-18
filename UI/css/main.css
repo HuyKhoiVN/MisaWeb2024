@@ -53,6 +53,11 @@ body {
     color: red;
 }
 
+.m-error {
+    color: #FF4747;
+    font-size: 13px;
+}
+
 .m-row-flex {
     display: flex;
     gap: 16px;

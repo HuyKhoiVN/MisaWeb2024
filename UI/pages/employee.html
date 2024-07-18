@@ -79,7 +79,7 @@
 
                 <div class="m-page-toolbar">
                     <div class="m-toolbar-left">
-                        <input type="text" class="m-input m-input-icon-right m-icon-16 m-icon-search"
+                        <input id="txtSearch" type="text" class="m-input m-input-icon-right m-icon-16 m-icon-search"
                             placeholder="Tìm kiếm theo mã, họ tên">
                     </div>
                     <div class="m-toolbar-right">
@@ -124,8 +124,8 @@
                                     <div class="dropdown-item" onclick="selectItem(this, 'combobox-container-number', 'combobox-input-number')">50</div>
                                 </div>
                             </div>
-                            <button class="btn-page btn-pre-page m-icon m-icon-next"></button>
-                            <button class="btn-page  btn-next-page m-icon m-icon-prev"></button>
+                            <button id="btnPrev" class="btn-page btn-pre-page m-icon m-icon-next"></button>
+                            <button id="btnNext" class="btn-page  btn-next-page m-icon m-icon-prev"></button>
                         </div>
         
                     </div>
@@ -146,6 +146,7 @@
                                     <label for="">Mã nhân viên <span class="require">*</span></label> 
                                     <div class="m-row">
                                         <input id="txtEmployeeCode" required type="text" class="m-input" placeholder="Mã nhân viên">
+                                        <div class="m-error"></div>
                                     </div>
                                 </div>
     
@@ -153,6 +154,7 @@
                                     <label for="">Họ và tên <span class="require">*</span></label>
                                     <div class="m-row">
                                         <input id="txtFullName" required type="text" class="m-input" placeholder="Họ và tên">
+                                        <div class="m-error"></div>
                                     </div>
                                 </div>
                                 <div class="m-row-col-4">
@@ -247,6 +249,7 @@
                                     <label for="">ĐT di động</label> 
                                     <div class="m-row">
                                         <input id="txtPhoneNumber" phonenumber type="text" class="m-input">
+                                        <div class="m-error"></div>
                                     </div>                                
                                 </div>
     
@@ -261,9 +264,11 @@
                                     <label for="">Email</label> 
                                     <div class="m-row">
                                         <input id="txtEmail" email type="text" class="m-input" placeholder="example@sth.com">
+                                        <div class="m-error"></div>
                                     </div>
                                 </div>
                             </div>
+
     
                             <div class="m-row-flex">
                                 <div class="m-row-col-4">
@@ -307,7 +312,8 @@
     <script src="../lib/jquery-3.7.1.js"></script>
     <script src="../lib/jquery-3.7.1.min.js"></script>
 
-    
+    <!-- resource js -->
+     <script src="../js/pages/resource.js"></script>
 
     <!-- show navbar -->
     <script>
