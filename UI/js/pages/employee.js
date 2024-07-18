@@ -2,14 +2,54 @@
 var formMode = "edit";
 var employeeIdForUpdate = null;
 var empForEdit = null;
+let employeesData = [];
+
+var currentPage = 1;
+var pageSize = 10;
+var totalPages = 1;
+
+
 
 $(document).ready(function () {
     //-------->1. Load dữ liệu từ JSON
     //-------->2. Hiển thị dữ liệu lên UI
     loadData();
 
-    //-------->3. Gán các sự kiện
-    //---3.1. Nhấn thêm mới:
+    //-------->3. Tìm kiếm theo tên/empCode
+    $("#txtSearch").on("keyup", function() {
+        let searchTerm = $(this).val().toLowerCase();
+        let filteredData = employeesData.filter(employee => {
+            return employee.EmployeeCode.toLowerCase().includes(searchTerm) ||
+                   employee.FullName.toLowerCase().includes(searchTerm);
+        });
+        renderTable(filteredData);
+    });
+
+    //-------->Phân trang
+    // Xử lý sự kiện khi chọn số bản ghi trên mỗi trang
+    $(".m-paging-right .dropdown-item").click(function () {
+        pageSize = parseInt($(this).text());
+        currentPage = 1; // Reset lại trang hiện tại khi thay đổi số bản ghi/trang
+        loadData();
+    });
+
+    // Xử lý sự kiện khi nhấn nút trang trước
+    $("#btnPrev").click(function () {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTable(employeesData); // Hiển thị dữ liệu trang trước
+        }
+    });
+
+    // Xử lý sự kiện khi nhấn nút trang sau
+    $("#btnNext").click(function () {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderTable(employeesData); // Hiển thị dữ liệu trang sau
+        }
+    });
+
+    //--------->Thêm mới nhân viên
     $("#btnAdd").click(function () {
         formMode = "add";
         //--hiển thị form thêm mới
@@ -66,6 +106,47 @@ $(document).ready(function () {
         }
     });    
 
+    
+        //-----hiển thị trạng thái lỗi validate khi không nhập các trường bắt buộc:
+        $("input[required]").blur(function () {
+            let isValid = validateInputRequired(this);
+            if (!isValid) {
+                $(this).siblings(".m-error").html("Thông tin này không được để trống!");
+            } else {
+                $(this).siblings(".m-error").text("");
+            }
+        });
+        
+
+        //-----hiển thị trạng thái lỗi với email sai định dạng
+        $("input[email]").blur(function () {
+            //email regex
+            let pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            let errorMessage = "Email không đúng định dạng!";
+            
+            let isValid = validateInput(this, pattern, errorMessage);
+            if (!isValid) {
+                $(this).siblings(".m-error").html(errorMessage);
+            } else {
+                $(this).siblings(".m-error").text("");
+            }
+        })
+
+        //-----hiển thị lỗi khi sdt sai định dạng
+        $("#txtPhoneNumber").blur(function () {
+            //sdt regex
+            let pattern = /^\+?[0-9]*$/;
+
+            let errorMessage = "Số điện thoại không đúng định dạng! Chỉ được phép chứa dấu + và số 0-9.";
+            let isValid = validateInput(this, pattern, errorMessage);
+            if (!isValid) {
+                $(this).siblings(".m-error").html(errorMessage);
+            } else {
+                $(this).siblings(".m-error").text("");
+            }
+        })
+
     //4. Thực hiện hành động trong form thêm mới
     $("#btnSave").click(function () {
         //---4.1. lấy dữ liệu từ form
@@ -95,7 +176,7 @@ $(document).ready(function () {
         //---4.2. Validate dữ liệu
         //------alert mã nv
         if(employeeCode == null || employeeCode === "") {
-            alert("Mã nhân viên không được để trống");
+            alert(resource["VI"].employeeNotEmpty);
             return false;
         }
 
@@ -119,29 +200,6 @@ $(document).ready(function () {
             alert("Vui lòng điền đúng các trường thông tin!");
             return false;
         }
-
-        //-----hiển thị trạng thái lỗi validate khi không nhập các trường bắt buộc:
-        $("input[required]").blur(function () {
-            validateInputRequired(this);
-        })
-
-        //-----hiển thị trạng thái lỗi với email sai định dạng
-        $("input[email]").blur(function () {
-            //email regex
-            let pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-            let errorMessage = "Email không đúng định dạng!";
-            validateInput(this, pattern, errorMessage);
-        })
-
-        //-----hiển thị lỗi khi sdt sai định dạng
-        $("#txtPhoneNumber").blur(function () {
-            //sdt regex
-            let pattern = /^\+?[0-9]*$/;
-
-            let errorMessage = "Số điện thoại không đúng định dạng! Chỉ được phép chứa dấu + và số 0-9.";
-            validateInput(this, pattern, errorMessage);
-        })
 
         //---4.3. Build object và thêm dữ liệu
         let positionfix = "548dce5f-5f29-4617-725d-e2ec561b0f41";
@@ -180,7 +238,7 @@ $(document).ready(function () {
                 },
                 error: function(response) {
                     $(".m-loading").hide();
-                    //console.log(response); // In ra respone
+                    //console.log(response); // In ra response
                     let errorMsg = 'Có lỗi xảy ra';
                     if (response.responseJSON && response.responseJSON.errors) {
                         // Lấy lỗi đầu tiên trong đối tượng errors
@@ -209,7 +267,7 @@ $(document).ready(function () {
                 },
                 error: function(response) {
                     $(".m-loading").hide();
-                    //console.log(response); // In ra respone
+                    //console.log(response); // In ra response
                     let errorMsg = 'Có lỗi xảy ra';
                     if (response.responseJSON && response.responseJSON.errors) {
                         // Lấy lỗi đầu tiên trong đối tượng errors
@@ -287,93 +345,82 @@ function loadData() {
     $.ajax({
         type: "GET",
         url: "https://cukcuk.manhnv.net/api/v1/Employees",
-        success: function (respone) {
+        success: function (response) {
             //khởi tạo biến đếm
-            let index = 1;
-
-            //duyệt từng đối tượng trong mảng
-            for(const employee of respone) {
-                //lấy thông tin cần thiết của từng đối tượng
-                let employeeCode = employee.EmployeeCode;
-                let fullName = employee.FullName;
-                let genderName = employee.GenderName;
-                let dob = employee.DateOfBirth;
-                let email = employee.Email;
-                let address = employee.Address;
-
-                //định dạng dữ liệu
-                // 1. Ngày tháng hiển thị ngày-tháng-năm
-                if(dob) {
-                    dob = new Date(dob);
-
-                    //lấy ra ngày
-                    let day = dob.getDate();
-                    day = day < 10 ? `0${day}` : day; //nếu ngày <10 thì thêm 0 vào trước
-
-                    //lấy ra tháng
-                    let month = dob.getMonth() + 1;
-                    month = month < 10 ? `0${month}` : month; //nếu tháng < 10 thì thêm 0 vào trước
-
-                    //lấy ra năm
-                    let year = dob.getFullYear();
-                    //lấy giá trị ngày/tháng/năm
-                    dob = `${day}/${month}/${year}`
-                }else {
-                    dob = "";
-                }
-
-                //2. Định dạng tiền tệ
-                //lấy ra giá trị tiền tệ
-                // let salary = employee.Salary;
-                // salary = new Intl.NumberFormat('nv-VI', { style: 'currency', currency: 'VND' }).format(salary);
-
-                //3. xử lý dữ liệu null cho giới tính, email, địa chỉ
-                genderName != null ? genderName = genderName : genderName = ""; //nếu giới tính không null thì lấy giá trị, ngược lại thì không hiển thị
-                email != null ? email = email : email = ""; //nếu email không null thì lấy
-                address != null ? address = address : address = ""; //nếu địa chỉ không null thì lấy
-
-                //4.thêm số 0 nếu index < 10
-                index = index < 10 ? `0${index}` : index;
-
-                //build chuỗi html
-                var el = $(`<tr>      
-                             <td class="text-align-left">
-                                 ${index}
-                                 <!-- <input type="checkbox"  name="" id="" checked> -->
-                             </td>
-                             <td class="text-align-left">${employeeCode}</td>
-                             <td class="text-align-left">${fullName}</td>
-                             <td class="text-align-left">${genderName}</td>
-                             <td class="text-align-center">${dob}</td>
-                             <td class="text-align-left">${email}</td>
-                             <td class="text-align-left col-address">
-                                 <div class="addrInfor">
-                                        ${address}
-                                 </div>
-                                 <div class="m-table-action">
-                                     <button id="btnEdit" class="btn-edit">
-                                         <i class="fas fa-edit"></i>
-                                     </button>
-                                     <button id="btnCopy" class="btn-copy">
-                                         <i class="fas fa-copy"></i>
-                                     </button>
-                                     <button id="btnDelete" class="btn-delete">
-                                         <i class="fa fa-times"></i>
-                                     </button>
-                                 </div>
-                             </td>
-                         </tr>`);
-                el.data("entity", employee);
-
-                $("#tableEmployee tbody").append(el);
-                index++;
-                $(".m-loading").hide();
-            }
+            employeesData = response;
+            totalPages = Math.ceil(employeesData.length / pageSize);
+            renderTable(response);
+            $(".m-loading").hide();
         },
-        error: function(respone) {
+        error: function(response) {
             debugger;
         }
     })
+}
+
+function renderTable(data) {
+    $("#tableEmployee tbody").empty();
+    let index = 1 + (currentPage - 1) * pageSize;
+    let startIndex = (currentPage - 1) * pageSize;
+    let endIndex = startIndex + pageSize;
+    let pageData = data.slice(startIndex, endIndex); // Lấy dữ liệu trang hiện tại
+    
+    for (const employee of pageData) {
+        let employeeCode = employee.EmployeeCode;
+        let fullName = employee.FullName;
+        let genderName = employee.GenderName;
+        let dob = employee.DateOfBirth;
+        let email = employee.Email;
+        let address = employee.Address;
+
+        if (dob) {
+            dob = new Date(dob);
+            let day = dob.getDate();
+            day = day < 10 ? `0${day}` : day;
+            let month = dob.getMonth() + 1;
+            month = month < 10 ? `0${month}` : month;
+            let year = dob.getFullYear();
+            dob = `${day}/${month}/${year}`;
+        } else {
+            dob = "";
+        }
+
+        genderName = genderName || "";
+        email = email || "";
+        address = address || "";
+        index = index < 10 ? `0${index}` : index;
+
+        var el = $(`<tr>      
+                     <td class="text-align-left">
+                         ${index}
+                     </td>
+                     <td class="text-align-left">${employeeCode}</td>
+                     <td class="text-align-left">${fullName}</td>
+                     <td class="text-align-left">${genderName}</td>
+                     <td class="text-align-center">${dob}</td>
+                     <td class="text-align-left">${email}</td>
+                     <td class="text-align-left col-address">
+                         <div class="addrInfor">
+                                ${address}
+                         </div>
+                         <div class="m-table-action">
+                             <button id="btnEdit" class="btn-edit">
+                                 <i class="fas fa-edit"></i>
+                             </button>
+                             <button id="btnCopy" class="btn-copy">
+                                 <i class="fas fa-copy"></i>
+                             </button>
+                             <button id="btnDelete" class="btn-delete">
+                                 <i class="fa fa-times"></i>
+                             </button>
+                         </div>
+                     </td>
+                 </tr>`);
+        el.data("entity", employee);
+
+        $("#tableEmployee tbody").append(el);
+        index++;
+    }
 }
 
 /* Clear dữ liệu */
@@ -425,7 +472,7 @@ function RemoveEmployee(empId) {
         },
         error: function(response) {
             $(".m-loading").hide();
-            //console.log(response); // In ra respone
+            //console.log(response); // In ra response
             let errorMsg = 'Có lỗi xảy ra';
             if (response.responseJSON && response.responseJSON.errors) {
                 // Lấy lỗi đầu tiên trong đối tượng errors
@@ -453,7 +500,7 @@ function GetEmpById(employeeIdForUpdate) {
         },
         error: function(response) {
             $(".m-loading").hide();
-            //console.log(response); // In ra respone
+            //console.log(response); // In ra response
             let errorMsg = 'Có lỗi xảy ra';
             if (response.responseJSON && response.responseJSON.errors) {
                 // Lấy lỗi đầu tiên trong đối tượng errors
