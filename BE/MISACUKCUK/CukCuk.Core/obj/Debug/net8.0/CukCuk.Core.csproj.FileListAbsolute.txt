@@ -1,0 +1,15 @@
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\bin\Debug\net8.0\CukCuk.Core.deps.json
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\bin\Debug\net8.0\CukCuk.Core.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\bin\Debug\net8.0\CukCuk.Core.pdb
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.AssemblyInfoInputs.cache
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.AssemblyInfo.cs
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.csproj.CoreCompileInputs.cache
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.sourcelink.json
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\refint\CukCuk.Core.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.pdb
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\ref\CukCuk.Core.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.Resources.ResourceEN.resources
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.Resources.ResourceVN.resources
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.csproj.GenerateResource.cache
