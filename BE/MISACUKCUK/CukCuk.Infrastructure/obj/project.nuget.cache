@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "vYTp4qaQ1B8=",
+  "success": true,
+  "projectFilePath": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Infrastructure\\CukCuk.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\mysqlconnector\\2.3.7\\mysqlconnector.2.3.7.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,16 @@
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\bin\Debug\net8.0\CukCuk.Infrastructure.deps.json
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\bin\Debug\net8.0\CukCuk.Infrastructure.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\bin\Debug\net8.0\CukCuk.Infrastructure.pdb
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\bin\Debug\net8.0\CukCuk.Core.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\bin\Debug\net8.0\CukCuk.Core.pdb
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.csproj.AssemblyReference.cache
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.AssemblyInfoInputs.cache
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.AssemblyInfo.cs
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.csproj.CoreCompileInputs.cache
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.sourcelink.json
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.I.C49089E6.Up2Date
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\refint\CukCuk.Infrastructure.dll
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\CukCuk.Infrastructure.pdb
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Infrastructure\obj\Debug\net8.0\ref\CukCuk.Infrastructure.dll

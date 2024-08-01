@@ -6,6 +6,8 @@ using MISACUKCUK.Api.Model;
 using System.Linq.Expressions;
 using MISACUKCUK.Api.Resources;
 using static Dapper.SqlMapper;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Data;
 
 namespace MISACUKCUK.Api.Controllers
 {
@@ -24,28 +26,16 @@ namespace MISACUKCUK.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            try
-            {
-                //Khai báo thông tin Database
-                var connectionString = "Host = 8.222.228.150; Port = 3306; Database = HAUI_2021604561_TrinhHuyKhoi;User Id = manhnv; Password = 12345678";
-                //1. Khởi tạo kết nối với MariaDb:            
-                var sqlConnection = new MySqlConnection(connectionString);
-
-                //2. Lấy dữ liệu
-                //2.1 Câu lệnh truy vấn lấy dữ liệu
-                var sqlCommand = "Select * FROM Employee";
-                //2.2 Thực hiện lấy dữ liệu
-                //lấy ra toàn bộ thông tin -> sử dụng object
-                //lấy ra thông tin khớp với đối tượng Employee -> sử dụng Emp
-                var employees = sqlConnection.Query<object>(sql: sqlCommand);
-
-                //trả kết quả cho client
-                return Ok(employees);
-            }catch (Exception ex)
-            {
-                return HandleException(ex);
-            }
+            return GetDelEmployees("Get");
         }
+
+        //nhận pageSize, pageNumber, employeeFilter, departmentId, positionId
+        [HttpGet("getpage")]
+        public IActionResult Get(int pageNumber = 1, int pageSize = 10)
+        {
+            return GetDelEmployees("GetPage", pageNumber, pageSize);
+        }
+
 
         /// <summary>
         /// Lấy nhân viên theo Id
@@ -86,59 +76,7 @@ namespace MISACUKCUK.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Employee employee)
         {
-            //Khai báo các thông tin cần thiết
-            var connectionString = "Host = 8.222.228.150; Port = 3306; Database = HAUI_2021604561_TrinhHuyKhoi;User Id = manhnv; Password = 12345678";
-            var error = new ErrorService();
-
-            //gọi hàm validate employee
-            var errorData = ValidateEmployee(employee);
-
-            //kiểm tra tính hợp lệ của PositionId và DepartmentId
-
-            // kiểm tra sự tồn tại DepartmentId
-            if (employee.DepartmentId.HasValue && !CheckDepartmentId(employee.DepartmentId.Value))
-            {
-                error.UserMsg = ResourceVN.Error_DepartmentIDNotValid;
-                return BadRequest(error);
-            }
-
-            //kiểm tra sự tồn tại PositionId
-            if (employee.PositionId.HasValue && !CheckPositionId(employee.PositionId.Value))
-            {
-                error.UserMsg = ResourceVN.Error_PositionIDNotValid;
-                return BadRequest(error);
-            }
-
-            if (errorData.Count > 0)
-            {
-                error.UserMsg = ResourceVN.Error_InputValueNotValid;
-                error.Data = errorData;
-                return BadRequest(error);
-            }
-
-            //Bước 2: Khởi tạo kết nối đến DB
-            var sqlConnection = new MySqlConnection(connectionString);
-
-            //Bước 3: Thêm mới dữ liệu
-            var sqlCommand = "INSERT INTO Employee (EmployeeId, EmployeeCode, FullName, DateOfBirth, Gender, Email, " +
-                "PhoneNumber, IdentityNumber, Address, IndentityDate, IdentityPlace, LanelineNumber, BankName, " +
-                "BankBranch, BankNumber, PositionId, DepartmentId, CreatedDate, CreatedBy, ModifiedDate, ModifiedBy) " +
-
-                "VALUES(@EmployeeId, @EmployeeCode, @FullName, @DateOfBirth, @Gender, @Email, @PhoneNumber, " +
-                "@IdentityNumber, @Address, @IndentityDate, IdentityPlace, @LanelineNumber, @BankName, @BankBranch, " +
-                "@BankNumber, @PositionId, @DepartmentId, @CreatedDate, @CreatedBy, @ModifiedDate, @ModifiedBy) ";
-
-            //Tạo mới employee
-            employee.EmployeeId = Guid.NewGuid();
-            var res = sqlConnection.Execute(sql:  sqlCommand, param: employee);
-            //Bước 4: Trả thông tin về client
-            if(res > 0)
-            {
-                return StatusCode(201, res);
-            }else
-            {
-                return Ok(res);
-            }
+            return SaveEmployee(employee, "Proc_InsertEmployee");
         }
 
         /// <summary>
@@ -162,83 +100,7 @@ namespace MISACUKCUK.Api.Controllers
                 return NotFound("Employee not found.");
             }
 
-            //khai báo các thông tin cần thiết
-            var connectionString = "Host = 8.222.228.150; Port = 3306; Database = HAUI_2021604561_TrinhHuyKhoi;User Id = manhnv; Password = 12345678";
-            var error = new ErrorService();
-
-            //gọi hàm validate employee
-            var errorData = ValidateEmployee(employee, employeeId);
-
-            if (errorData.Count > 0)
-            {
-                error.UserMsg = ResourceVN.Error_InputValueNotValid;
-                error.Data = errorData;
-                return BadRequest(error);
-            }
-
-            // kiểm tra sự tồn tại DepartmentId
-            if (employee.DepartmentId.HasValue && !CheckDepartmentId(employee.DepartmentId.Value))
-            {
-                error.UserMsg = "Department ID is invalid.";
-                return BadRequest(error);
-            }
-
-            //kiểm tra sự tồn tại PositionId
-            if (employee.PositionId.HasValue && !CheckPositionId(employee.PositionId.Value))
-            {
-                error.UserMsg = "Position ID is invalid.";
-                return BadRequest(error);
-            }
-
-
-            //Khởi tạo kết nối đến db
-            using (var sqlConnection = new MySqlConnection(connectionString))
-            {
-                sqlConnection.Open();
-
-                // Bước 3: Cập nhật dữ liệu
-                var sqlCommand = "UPDATE Employee SET EmployeeCode = @EmployeeCode, FullName = @FullName, DateOfBirth = @DateOfBirth, " +
-                    "Gender = @Gender, Email = @Email, PhoneNumber = @PhoneNumber, IdentityNumber = @IdentityNumber, Address = @Address, " +
-                    "IndentityDate = @IndentityDate, IdentityPlace = @IdentityPlace, LanelineNumber = @LanelineNumber, BankName = @BankName, " +
-                    "BankBranch = @BankBranch, BankNumber = @BankNumber, PositionId = @PositionId, DepartmentId = @DepartmentId, " +
-                    "ModifiedDate = @ModifiedDate, ModifiedBy = @ModifiedBy " +
-                    "WHERE EmployeeId = @EmployeeId";
-
-                // Thiết lập các tham số
-                DynamicParameters dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("@EmployeeId", employeeId);
-                dynamicParameters.Add("@EmployeeCode", employee.EmployeeCode);
-                dynamicParameters.Add("@FullName", employee.FullName);
-                dynamicParameters.Add("@DateOfBirth", employee.DateOfBirth);
-                dynamicParameters.Add("@Gender", employee.Gender);
-                dynamicParameters.Add("@Email", employee.Email);
-                dynamicParameters.Add("@PhoneNumber", employee.PhoneNumber);
-                dynamicParameters.Add("@IdentityNumber", employee.IdentityNumber);
-                dynamicParameters.Add("@Address", employee.Address);
-                dynamicParameters.Add("@IndentityDate", employee.IndentityDate);
-                dynamicParameters.Add("@IdentityPlace", employee.IdentityPlace);
-                dynamicParameters.Add("@LanelineNumber", employee.LanelineNumber);
-                dynamicParameters.Add("@BankName", employee.BankName);
-                dynamicParameters.Add("@BankBranch", employee.BankBranch);
-                dynamicParameters.Add("@BankNumber", employee.BankNumber);
-                dynamicParameters.Add("@PositionId", employee.PositionId);
-                dynamicParameters.Add("@DepartmentId", employee.DepartmentId);
-                dynamicParameters.Add("@ModifiedDate", DateTime.Now);
-                dynamicParameters.Add("@ModifiedBy", employee.ModifiedBy); // Cập nhật người dùng thực hiện thay đổi
-
-                // Thực hiện cập nhật
-                var res = sqlConnection.Execute(sql: sqlCommand, param: dynamicParameters);
-
-                // Bước 4: Trả thông tin về client
-                if (res > 0)
-                {
-                    return Ok(res);
-                }
-                else
-                {
-                    return BadRequest(error);
-                }
-            }
+            return SaveEmployee(employee, "Proc_UpdateEmployee", employeeId);
         }
 
         /// <summary>
@@ -258,46 +120,8 @@ namespace MISACUKCUK.Api.Controllers
             {
                 return NotFound(ResourceVN.Info_EmployeeNotFound);
             }
-
-            // Khai báo thông tin cần thiết
-            var connectionString = "Host = 8.222.228.150; Port = 3306; Database = HAUI_2021604561_TrinhHuyKhoi;User Id = manhnv; Password = 12345678";
-            var error = new ErrorService();
-
-            // Khởi tạo kết nối đến db
-            using (var sqlConnection = new MySqlConnection(connectionString))
-            {
-                sqlConnection.Open();
-
-                // Bước 3: Xóa dữ liệu
-                var sqlCommand = "DELETE FROM Employee WHERE EmployeeId = @EmployeeId";
-
-                // Thiết lập tham số
-                var dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("@EmployeeId", employeeId);
-
-                try
-                {
-                    // Thực hiện xóa
-                    var res = sqlConnection.Execute(sql: sqlCommand, param: dynamicParameters);
-
-                    // Bước 4: Trả thông tin về client
-                    if (res > 0)
-                    {
-                        return Ok(ResourceVN.Info_EmployeeDeleted);
-                    }
-                    else
-                    {
-                        return BadRequest(ResourceVN.Erorr_Exception);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Xử lý lỗi và trả về lỗi server
-                    return HandleException(ex);
-                }
-            }
+            return GetDelEmployees("Delete", employeeId: employeeId);
         }
-
 
         /// <summary>
         /// Validate dữ liệu đầu vào
@@ -341,8 +165,212 @@ namespace MISACUKCUK.Api.Controllers
                 errorData.Add("EmployeeCode", ResourceVN.ValidateError_EmployeeCodeExits);
             }
 
+            //1.6 kiểm tra tính hợp lệ của PositionId và DepartmentId
+
+            // kiểm tra sự tồn tại DepartmentId
+            if (employee.DepartmentId.HasValue && !CheckDepartmentId(employee.DepartmentId.Value))
+            {
+                errorData.Add("DepartmentId", "Department ID is invalid");
+            }
+
+            //kiểm tra sự tồn tại PositionId
+            if (employee.PositionId.HasValue && !CheckPositionId(employee.PositionId.Value))
+            {
+                errorData.Add("PositionId", "PositionId is invalid");
+            }
+
             return errorData;
         }
+
+        /// <summary>
+        /// Lấy danh sách nhân viên (toàn bộ hoặc lấy theo phân trang)
+        /// </summary>
+        /// <param name="action">tên hành động</param>
+        /// <param name="pageNumber">số trang</param>
+        /// <param name="pageSize">số bản ghi/trang</param>
+        /// <returns></returns>
+        private IActionResult GetDelEmployees(string action, int pageNumber = 1, int pageSize = 10, Guid? employeeId = null)
+        {
+            try
+            {
+                // Validate tham số đầu vào
+                if (pageNumber < 1 || pageSize < 1)
+                {
+                    return BadRequest("Page number and page size must be greater than 0.");
+                }
+
+                // Khai báo thông tin Database
+                var connectionString = "Host=8.222.228.150;Port=3306;Database=HAUI_2021604561_TrinhHuyKhoi;User Id=manhnv;Password=12345678";
+
+                // Stored procedure name
+                var sqlCommandText = "Proc_GetPage_DelEmployee";
+
+                // Khởi tạo kết nối với MariaDB
+                using (var sqlConnection = new MySqlConnection(connectionString))
+                {
+                    sqlConnection.Open();
+
+                    // Tạo sqlCommand
+                    var sqlCommand = sqlConnection.CreateCommand();
+                    sqlCommand.CommandText = sqlCommandText;
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    // Gán tham số cho parameter, bao gồm m_Action, m_Offset, m_PageSize, m_EmployeeId
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@m_Action", action);
+
+                    parameters.Add("@m_PageSize", pageSize);
+
+                    //m_EmployeeId = EmployeeId, nếu không có giá trị -> null
+                    parameters.Add("@m_EmployeeId", employeeId.HasValue ? employeeId : null);
+
+                    // Gán tham số riêng với từng Action
+                    if (action == "GetPage")
+                    {
+                        // Tính số bản ghi cần bỏ qua
+                        var offset = (pageNumber - 1) * pageSize;
+
+                        // Gán tham số cho offset
+                        parameters.Add("@m_Offset", offset);
+                    }
+                    else if (action == "Get")
+                    {
+                        // Set m_Offset = 0
+                        parameters.Add("@m_Offset", 0);
+                    }
+                    else if (action == "Delete")
+                    {
+                        if(!employeeId.HasValue)
+                        {
+                            return BadRequest("EmployeeId Not Found");
+                        }
+                        parameters.Add("@m_EmployeeId", employeeId);
+                        parameters.Add("@m_Ofset", 0);
+                        return Ok(ResourceVN.Info_EmployeeDeleted);
+                    }
+                    else
+                    {
+                        return BadRequest("Action not valid");
+                    }
+
+                    // Thực thi stored procedure
+                    var employees = sqlConnection.Query<Employee>(sql: sqlCommandText, param: parameters, commandType: CommandType.StoredProcedure);
+
+                    // Trả về json gồm tổng số nhân viên và danh sách nhân viên
+                    return Ok(new
+                    {
+                        Employees = employees
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return HandleException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Hàm thêm/sửa nhân viên, employee: đối tượng nv, sqlCommandText: StoreProduce, employeeId
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <param name="sqlCommandText"></param>
+        /// <param name="employeeId"></param>
+        /// <returns>
+        /// 400: Bad request
+        /// 200: Sửa thành công, 201: Thêm thành công
+        /// </returns>
+        private IActionResult SaveEmployee(Employee employee, string sqlCommandText, Guid? employeeId = null)
+        {
+            // Khai báo các thông tin cần thiết
+            var connectionString = "Host=8.222.228.150;Port=3306;Database=HAUI_2021604561_TrinhHuyKhoi;User Id=manhnv;Password=12345678";
+            var error = new ErrorService();
+
+            //Kiểm tra id của employee, nếu không -> tạo mới, có -> bằng giá trị cũ
+            if (!employeeId.HasValue)
+            {
+                employee.EmployeeId = Guid.NewGuid();
+            }
+            else
+            {
+                employee.EmployeeId = employeeId.Value;
+            }
+
+            //validate Emp
+            var errorData = ValidateEmployee(employee, employeeId);
+
+            //Nếu có lỗi -> BadRequest, nếu không bỏ qua
+            if (errorData.Count > 0)
+            {
+                error.UserMsg = ResourceVN.Error_InputValueNotValid;
+                error.Data = errorData;
+                return BadRequest(error);
+            }
+
+            // Khởi tạo kết nối đến db
+            using (var sqlConnection = new MySqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+
+                // Tạo sqlCommand
+                var sqlCommand = sqlConnection.CreateCommand();
+                sqlCommand.CommandText = sqlCommandText;
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                MySqlCommandBuilder.DeriveParameters(sqlCommand);
+
+                // Gán tham số cho parameter
+                var dynamicParam = ParamProcess(sqlCommand, employee);
+
+                // Thực hiện StoredProcedure
+                var res = sqlConnection.Execute(sql: sqlCommandText, param: dynamicParam, commandType: System.Data.CommandType.StoredProcedure);
+
+                // Trả thông tin về client
+                if (res > 0)
+                {
+                    return employeeId.HasValue ? Ok(res) : StatusCode(201, res);
+                }
+                else
+                {
+                    error.UserMsg = employeeId.HasValue ? "Update failed." : "Insert failed.";
+                    return BadRequest(error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Xử lý, gán parameter
+        /// </summary>
+        /// <param name="sqlCommand"></param>
+        /// <param name="employee"></param>
+        /// <returns>
+        /// DyamicParameters đã được gán giá trị cho từng DymicParameter
+        /// </returns>
+        private DynamicParameters ParamProcess(MySqlCommand sqlCommand, Employee employee)
+        {
+            var dynamicParam = new DynamicParameters();
+            foreach (MySqlParameter parameter in sqlCommand.Parameters)
+            {
+                // tên của tham số:
+                var paramName = parameter.ParameterName;
+                var propName = paramName.Replace("@m_", "");
+
+                // Kiểm tra thuộc tính của employee
+                var entityProperty = employee.GetType().GetProperty(propName);
+
+                // Nếu thuộc tính tồn tại -> gán giá trị, ngược lại gán null
+                if (entityProperty != null)
+                {
+                    var propValue = entityProperty.GetValue(employee);
+                    // Thực hiện gán giá trị cho các Value
+                    dynamicParam.Add(paramName, propValue);
+                }
+                else
+                {
+                    dynamicParam.Add(paramName, null);
+                }
+            }
+            return dynamicParam;
+        }
+
 
         /// <summary>
         /// Kiểm tra mã nv có trùng không
