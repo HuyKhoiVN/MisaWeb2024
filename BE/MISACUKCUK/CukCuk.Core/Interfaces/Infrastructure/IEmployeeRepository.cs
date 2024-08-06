@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 
 namespace CukCuk.Core.Interfaces.Infrastructure
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository : IBaseRepository<Employee>
     {
-        IEnumerable<Employee> GetAll();
-        Employee GetById(Guid employeeId);
-        int Insert(Employee employee);
-        int Update(Employee employee, Guid employeeId);
-        int Delete(Employee employee);
+        int Delete(Guid employeeId);
         IEnumerable<Employee> GetPaging(int pageSize, int pageIndex);
         bool CheckDuplicateCode(string employeeCode, Guid? employeeId = null);
     }

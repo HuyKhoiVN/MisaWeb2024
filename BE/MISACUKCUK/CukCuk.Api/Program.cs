@@ -16,6 +16,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
+builder.Services.AddScoped<IPositionService, PostionService>();
+builder.Services.AddScoped<IPositionRepository, PositionRepository>();
+
+builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));    
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

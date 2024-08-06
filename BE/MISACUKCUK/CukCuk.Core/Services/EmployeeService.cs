@@ -11,23 +11,17 @@ using System.Threading.Tasks;
 
 namespace CukCuk.Core.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
         IEmployeeRepository _employeeRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository) : base(employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public int InsertService(Employee employee)
+        protected override void ValidateEmployee(Employee employee)
         {
-            // 1.1 Thông tin mã nhân viên không được phép để trống
-            if (string.IsNullOrEmpty(employee.EmployeeCode))
-            {
-                throw new EmployeeValidateException(ResourceVN.ValidateError_EmployeeCodeNotEmpty);
-            }
-
             //1.2 Check trùng mã
             var isDuplicate = _employeeRepository.CheckDuplicateCode(employee.EmployeeCode);
             if (isDuplicate)
@@ -35,14 +29,11 @@ namespace CukCuk.Core.Services
                 throw new EmployeeValidateException(ResourceVN.ValidateError_EmployeeCodeExits);
             }
 
-            //Thực hiện thêm mới
-            var res = _employeeRepository.Insert(employee);
-            return res;
-        }
-
-        public int UpdateService(Employee employee, Guid employeeId)
-        {
-            return 0;
+            //1.3 Ngày sinh không lớn hơn ngày hiện tại
+            if (employee.DateOfBirth > DateTime.Now)
+            {
+                throw new EmployeeValidateException("Ngày sinh không lớn hơn ngày hiện tại");
+            }
         }
     }
 }

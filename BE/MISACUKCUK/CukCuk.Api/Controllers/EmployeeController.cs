@@ -11,21 +11,21 @@ namespace CukCuk.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class EmployeeController : MISABaseController<Employee>
     {
         IEmployeeService _employeeService;
         IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(IEmployeeRepository employeeRepository, IEmployeeService employeeService)
+        public EmployeeController(IEmployeeRepository employeeRepository, IEmployeeService employeeService) : base(employeeService, employeeRepository)
         {
             _employeeRepository = employeeRepository;
             _employeeService = employeeService;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult Get()
         {
-            var employees = _employeeRepository.GetAll();
+            var employees = _employeeRepository.GetAllEntities();
             return Ok(employees);
         }
 
@@ -57,7 +57,13 @@ namespace CukCuk.Api.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                var response = new
+                {
+                    devMsg = ex.Message,
+                    userMsg = ex.Message,
+                    data = employee
+                };
+                return BadRequest(response);
             }
         }
 
@@ -71,6 +77,6 @@ namespace CukCuk.Api.Controllers
         public IActionResult Delete(Guid employeeId)
         {
             return Ok();
-        }
+        }*/
     }
 }
