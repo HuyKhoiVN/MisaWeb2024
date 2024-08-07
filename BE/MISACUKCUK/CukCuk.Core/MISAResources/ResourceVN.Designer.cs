@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CukCuk.Core.Resources {
+namespace CukCuk.Core.MISAResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace CukCuk.Core.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourceEN {
+    public class ResourceVN {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceEN() {
+        internal ResourceVN() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CukCuk.Core.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MISACUKCUK.Api.Resources.ResourceEN", typeof(ResourceEN).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CukCuk.Core.MISAResources.ResourceVN", typeof(ResourceVN).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,25 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error, please contact Misa for support.
+        ///   Looks up a localized string similar to Mã nhân viên.
+        /// </summary>
+        public static string Employee_EmployeeCode {
+            get {
+                return ResourceManager.GetString("Employee_EmployeeCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Họ tên nhân viên.
+        /// </summary>
+        public static string Employee_EmployeeName {
+            get {
+                return ResourceManager.GetString("Employee_EmployeeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Có lỗi xảy ra, vui lòng liên hệ Misa để được trợ giúp.
         /// </summary>
         public static string Erorr_Exception {
             get {
@@ -70,7 +88,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department ID Not Valid.
+        ///   Looks up a localized string similar to Id Phòng ban không hợp lệ.
         /// </summary>
         public static string Error_DepartmentIDNotValid {
             get {
@@ -79,7 +97,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input Value Not Valid.
+        ///   Looks up a localized string similar to Dữ liệu đầu vào không hợp lệ.
         /// </summary>
         public static string Error_InputValueNotValid {
             get {
@@ -88,7 +106,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position ID is invalid.
+        ///   Looks up a localized string similar to ID Vị trí không hợp lệ.
         /// </summary>
         public static string Error_PositionIDNotValid {
             get {
@@ -97,7 +115,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data not valid!.
+        ///   Looks up a localized string similar to Dữ liệu đầu vào không hợp lệ.
         /// </summary>
         public static string Error_ValidateData {
             get {
@@ -106,7 +124,34 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee deleted successfully.
+        ///   Looks up a localized string similar to Nữ.
+        /// </summary>
+        public static string Gender_Female {
+            get {
+                return ResourceManager.GetString("Gender_Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nam.
+        /// </summary>
+        public static string Gender_Male {
+            get {
+                return ResourceManager.GetString("Gender_Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không xác định.
+        /// </summary>
+        public static string Gender_Other {
+            get {
+                return ResourceManager.GetString("Gender_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xoá nhân viên thành công.
         /// </summary>
         public static string Info_EmployeeDeleted {
             get {
@@ -115,7 +160,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee Not Found.
+        ///   Looks up a localized string similar to Không tìm thấy nhân viên.
         /// </summary>
         public static string Info_EmployeeNotFound {
             get {
@@ -124,7 +169,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DateOfBirth is not valid!.
+        ///   Looks up a localized string similar to Ngày sinh không được lớn hơn ngày hiện tại.
         /// </summary>
         public static string ValidateError_DateOfBirthNotValid {
             get {
@@ -133,7 +178,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email not valid!.
+        ///   Looks up a localized string similar to Email không đúng định dạng.
         /// </summary>
         public static string ValidateError_EmailNotValid {
             get {
@@ -142,7 +187,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The EmployeeCode already exists.
+        ///   Looks up a localized string similar to Mã nhân viên đã tồn tại.
         /// </summary>
         public static string ValidateError_EmployeeCodeExits {
             get {
@@ -151,7 +196,7 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EmployeeCode empty is not allow.
+        ///   Looks up a localized string similar to Mã nhân viên không được phép để trống.
         /// </summary>
         public static string ValidateError_EmployeeCodeNotEmpty {
             get {
@@ -160,11 +205,20 @@ namespace CukCuk.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FullName empty is not allow.
+        ///   Looks up a localized string similar to Họ và tên không được phép để trống.
         /// </summary>
         public static string ValidateError_FullNameNotEmpty {
             get {
                 return ResourceManager.GetString("ValidateError_FullNameNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to không được phép để trống trường dữ liệu này.
+        /// </summary>
+        public static string ValidateError_NotNull {
+            get {
+                return ResourceManager.GetString("ValidateError_NotNull", resourceCulture);
             }
         }
     }

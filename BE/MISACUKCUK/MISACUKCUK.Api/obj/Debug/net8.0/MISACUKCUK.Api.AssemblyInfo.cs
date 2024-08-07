@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MISACUKCUK.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18809fb8703c06e5e52b1d3d16b348109fbb1bbf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+036176eb7c8ecda318dd1bf1cc0bdbdb7660fb0e")]
 [assembly: System.Reflection.AssemblyProductAttribute("MISACUKCUK.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MISACUKCUK.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

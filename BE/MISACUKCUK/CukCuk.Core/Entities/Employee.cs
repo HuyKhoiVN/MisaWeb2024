@@ -1,5 +1,6 @@
 ﻿using CukCuk.Core.Enum;
 using CukCuk.Core.MISAAttribute;
+using CukCuk.Core.MISAResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,11 @@ namespace CukCuk.Core.Entities
         public Guid EmployeeId { get; set; }
 
         [NotEmpty]
-        [PropertyName("Tên nhân viên")]
+        [PropertyName("Mã nhân viên")]
         public string EmployeeCode { get; set; }
-
         
+        [NotEmpty]
+        [PropertyName("Tên nhân viên")]
         public string FullName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public Gender? Gender { get; set; }
@@ -41,6 +43,8 @@ namespace CukCuk.Core.Entities
         public string CreatedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
+
+        [NotMap]
         public string GenderName
         {
             get
@@ -48,11 +52,11 @@ namespace CukCuk.Core.Entities
                 switch (Gender)
                 {
                     case Enum.Gender.Female:
-                        return "Nữ";
+                        return ResourceVN.Gender_Female;
                     case Enum.Gender.Male:
-                        return "Nam";
+                        return ResourceVN.Gender_Male;
                     default:
-                        return "Không xác định";
+                        return ResourceVN.Gender_Other;
                 }
             }
         }

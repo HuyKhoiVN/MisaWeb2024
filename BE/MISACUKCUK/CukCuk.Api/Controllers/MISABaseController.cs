@@ -1,7 +1,7 @@
 ﻿using CukCuk.Core.Exceptions;
 using CukCuk.Core.Interfaces.Infrastructure;
 using CukCuk.Core.Interfaces.Services;
-using CukCuk.Core.Resources;
+using CukCuk.Core.MISAResources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -105,7 +105,7 @@ namespace CukCuk.Api.Controllers
         /// <param name="entity"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(MISAEntity entity)
+        public IActionResult Post([FromBody] MISAEntity entity)
         {
             try
             {
@@ -140,8 +140,8 @@ namespace CukCuk.Api.Controllers
         /// <param name="entity"></param>
         /// <param name="entityId"></param>
         /// <returns></returns>
-        [HttpPut]
-        public IActionResult Put(MISAEntity entity, Guid entityId)
+        [HttpPut("{entityId}")]
+        public IActionResult Put([FromBody] MISAEntity entity, [FromRoute] Guid entityId)
         {
             try
             {
@@ -154,7 +154,7 @@ namespace CukCuk.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ex.Message,
-                    data = ex.Data
+                    data = entity
                 };
                 return BadRequest(response);
             }

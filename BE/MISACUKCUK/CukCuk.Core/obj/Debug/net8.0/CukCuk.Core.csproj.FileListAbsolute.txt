@@ -10,6 +10,6 @@ D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug
 D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\refint\CukCuk.Core.dll
 D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.pdb
 D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\ref\CukCuk.Core.dll
-D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.Resources.ResourceEN.resources
-D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.Resources.ResourceVN.resources
 D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.csproj.GenerateResource.cache
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.MISAResources.ResourceEN.resources
+D:\HuyKhoi\MisaWebIntern\MisaWeb\MisaWeb2024\BE\MISACUKCUK\CukCuk.Core\obj\Debug\net8.0\CukCuk.Core.MISAResources.ResourceVN.resources
