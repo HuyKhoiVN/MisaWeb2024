@@ -2,7 +2,7 @@
 using CukCuk.Core.Exceptions;
 using CukCuk.Core.Interfaces.Infrastructure;
 using CukCuk.Core.Interfaces.Services;
-using CukCuk.Core.Resources;
+using CukCuk.Core.MISAResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;

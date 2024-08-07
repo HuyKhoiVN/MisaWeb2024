@@ -16,38 +16,6 @@ namespace CukCuk.Infrastructure.Repository
         {
             throw new NotImplementedException();
         }
-
-       /* public override int Insert(Employee employee)
-        {
-            using (_mySqlConnection = new MySqlConnection(_connectionString))
-            {
-                //Bước 3: Thêm mới dữ liệu
-                var sqlCommand = "INSERT INTO Employee (EmployeeId, EmployeeCode, FullName, DateOfBirth, Gender, Email, " +
-                    "PhoneNumber, IdentityNumber, Address, IndentityDate, IdentityPlace, LanelineNumber, BankName, " +
-                    "BankBranch, BankNumber, PositionId, DepartmentId, CreatedDate, CreatedBy, ModifiedDate, ModifiedBy) " +
-
-                    "VALUES(@EmployeeId, @EmployeeCode, @FullName, @DateOfBirth, @Gender, @Email, @PhoneNumber, " +
-                    "@IdentityNumber, @Address, @IndentityDate, IdentityPlace, @LanelineNumber, @BankName, @BankBranch, " +
-                    "@BankNumber, @PositionId, @DepartmentId, @CreatedDate, @CreatedBy, @ModifiedDate, @ModifiedBy) ";
-
-                //Tạo mới employee
-                employee.EmployeeId = Guid.NewGuid();
-                var res = _mySqlConnection.Execute(sql: sqlCommand, param: employee);
-                //Bước 4: Trả thông tin về client
-                return res;
-            }         
-        }*/
-
-        public override int Update(Employee employee, Guid employeeId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int Delete(Guid employeeId)
-        {
-            return 1;
-        }
-
         public bool CheckDuplicateCode(string employeeCode, Guid? employeeId = null)
         {
             var sqlConnection = new MySqlConnection(_connectionString);

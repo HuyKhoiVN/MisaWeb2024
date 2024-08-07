@@ -2,7 +2,7 @@
 using CukCuk.Core.Interfaces.Infrastructure;
 using CukCuk.Core.Interfaces.Services;
 using CukCuk.Core.MISAAttribute;
-using CukCuk.Core.Resources;
+using CukCuk.Core.MISAResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +22,25 @@ namespace CukCuk.Core.Services
 
         public int InsertService(MisaEntity entity)
         {
-            //Xử lý validate
-            //Validate chung
+            // Xử lý validate
+            // Validate chung
             ValidateData(entity);
-            //Validate riêng
+            // Validate riêng
             ValidateEmployee(entity);
-            //Thêm mới
+            // Thêm mới
             var res = _baseRepository.Insert(entity);
             return res;
         }
 
         public int UpdateService(MisaEntity entity, Guid entityId)
         {
+            // Xử lý validate
+            // Validate chung
+            ValidateData(entity);
+            // Validate riêng
+            ValidateEmployee(entity, entityId);
+
+            // Update
             var res = _baseRepository.Update(entity, entityId);
             return res;
         }
@@ -41,8 +48,8 @@ namespace CukCuk.Core.Services
         private void ValidateData(MisaEntity entity)
         {
             var props = entity.GetType().GetProperties();
-            //Check dữ liệu không được phép để trống
-            //Lấy ra attribute được đánh dấu [NotEmpty]
+            // Check dữ liệu không được phép để trống
+            // Lấy ra attribute được đánh dấu [NotEmpty]
             var propNotEmpty = props.Where(p => Attribute.IsDefined(p, typeof(NotEmpty)));
 
             foreach (var prop in propNotEmpty)
@@ -61,12 +68,12 @@ namespace CukCuk.Core.Services
                 if(propValue == null || string.IsNullOrEmpty(propValue.ToString()))
                 {
                     nameDisplay = (nameDisplay == string.Empty ? propName : nameDisplay);
-                    throw new EmployeeValidateException($"Thông tin {nameDisplay} không được phép để trống"); 
+                    throw new EmployeeValidateException($"{nameDisplay} " + ResourceVN.ValidateError_NotNull); 
                 }
             }          
         }
 
-        protected virtual void ValidateEmployee(MisaEntity entity)
+        protected virtual void ValidateEmployee(MisaEntity entity, Guid? entityId = null)
         {
 
         }
