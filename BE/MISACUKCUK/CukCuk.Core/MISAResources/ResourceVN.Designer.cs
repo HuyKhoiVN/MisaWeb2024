@@ -169,6 +169,15 @@ namespace CukCuk.Core.MISAResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Số trang và số phần tử mỗi trang phải lớn hơn 1.
+        /// </summary>
+        public static string Validate_PageSize_PageIndex {
+            get {
+                return ResourceManager.GetString("Validate_PageSize_PageIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ngày sinh không được lớn hơn ngày hiện tại.
         /// </summary>
         public static string ValidateError_DateOfBirthNotValid {

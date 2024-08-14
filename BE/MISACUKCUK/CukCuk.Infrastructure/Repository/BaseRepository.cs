@@ -85,7 +85,7 @@ namespace CukCuk.Infrastructure.Repository
             }
         }
 
-        /*public virtual int Insert(MisaEntity entity)
+        public virtual int Insert(MisaEntity entity)
         {
             // Build chuỗi câu sql thực hiện thêm mới dữ liệu:
 
@@ -109,27 +109,35 @@ namespace CukCuk.Infrastructure.Repository
                 var primaryKey = Attribute.IsDefined(prop, typeof(PrimaryKey));
 
                 // Kiểm tra thuộc tính NotMap
-                var notMap= Attribute.IsDefined(prop, typeof(NotMap));
+                var notMap = Attribute.IsDefined(prop, typeof(NotMap));
 
                 // Thực hiện tạo mới giá trị cho khoá chính
                 if (primaryKey == true || propName == $"{className}Id")
                 {
-                    if(prop.PropertyType == typeof(Guid))
+                    if (prop.PropertyType == typeof(Guid))
                     {
                         propValue = Guid.NewGuid();
                     }
                 }
 
                 // Bỏ qua nếu property được đánh dấu notMap
-                if(notMap == true)
+                if (notMap == true)
                     continue;
 
                 // Set giá trị mặc định cho CreatedDate và ModifiedDate
-                if(propName == "CreatedDate" || propName == "ModifiedDate")
+                if (propName == "CreatedDate" || propName == "ModifiedDate")
                 {
-                    if(prop.PropertyType == typeof(DateTime?))
+                    if (prop.PropertyType == typeof(DateTime?))
                     {
                         propValue = DateTime.Now;
+                    }
+                }
+
+                // Set giá trị cho CreatedBy, ModifiedBy
+                if (propName == "CreatedBy" || propName == "ModifiedBy")
+                {
+                    if(prop.PropertyType == typeof(string)){
+                        propValue = "Huy Khoi";
                     }
                 }
 
@@ -142,16 +150,16 @@ namespace CukCuk.Infrastructure.Repository
 
                 dynamicParam.Add(paramName, propValue);
             }
-            
+
             // 4. Thực hiện build câu lệnh sql
             var sqlCommand = $"INSERT {className}({sqlColumnsName.ToString()}) VALUES ({sqlColumnValue.ToString()})";
 
-            using(_mySqlConnection = new MySqlConnection(_connectionString))
+            using (_mySqlConnection = new MySqlConnection(_connectionString))
             {
                 var res = _mySqlConnection.Execute(sql: sqlCommand, param: dynamicParam);
                 return res;
             }
-        }*/
+        }
 
         public virtual int Update(MisaEntity entity, Guid entityId)
         {
@@ -181,6 +189,26 @@ namespace CukCuk.Infrastructure.Repository
                 if (notMap == true || primaryKey == true)
                     continue;
 
+                // Set giá trị mặc định cho CreatedDate và CreatedBy
+                if (propName == "CreatedDate" || propName == "CreatedBy")
+                {
+                    propValue = prop.GetValue(entity);
+                }
+
+                // Set giá trị cho ModifiedDate, ModifiedBy
+                if (propName == "ModifiedDate" || propName == "ModifiedBy")
+                {
+                    if (prop.PropertyType == typeof(DateTime?))
+                    {
+                        propValue = DateTime.Now;
+                    }
+
+                    if(prop.PropertyType == typeof(string))
+                    {
+                        propValue = prop.GetValue(entity);
+                    }
+                }
+
                 // Append property = @property vào sqlParam
                 sqlParam.Append($"{delimiter}{propName} = {paramName}");
 
@@ -203,7 +231,7 @@ namespace CukCuk.Infrastructure.Repository
         }
 
 
-        public int Insert(MisaEntity entity)
+        /*public int Insert(MisaEntity entity)
         {
             using (_mySqlConnection = new MySqlConnection(_connectionString))
             {
@@ -224,7 +252,7 @@ namespace CukCuk.Infrastructure.Repository
                 return res;
             }
 
-        }
+        }*/
 
         /// <summary>
         /// Xử lý các tham số đầu vào cho Parameter - Produce
@@ -232,7 +260,7 @@ namespace CukCuk.Infrastructure.Repository
         /// <param name="sqlCommand"></param>
         /// <param name="employee"></param>
         /// <returns></returns>
-        private DynamicParameters ParamProcess(MySqlCommand sqlCommand, MisaEntity entity)
+        /*private DynamicParameters ParamProcess(MySqlCommand sqlCommand, MisaEntity entity)
         {
             var dynamicParam = new DynamicParameters();
             foreach (MySqlParameter parameter in sqlCommand.Parameters)
@@ -257,6 +285,6 @@ namespace CukCuk.Infrastructure.Repository
                 }
             }
             return dynamicParam;
-        }
+        }*/
     }
 }

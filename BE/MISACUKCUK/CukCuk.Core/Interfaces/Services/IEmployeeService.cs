@@ -9,6 +9,6 @@ namespace CukCuk.Core.Interfaces.Services
 {
     public interface IEmployeeService : IBaseService<Employee>
     {
-        
+        public IEnumerable<Employee> GetPaging(int pageSize, int pageIndex);
     }
 }

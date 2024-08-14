@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9CACFD9F-E4DB-4C36-ADA8-BB43B7A1233A}|CukCuk.Infrastructure\\CukCuk.Infrastructure.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.infrastructure\\repository\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CACFD9F-E4DB-4C36-ADA8-BB43B7A1233A}|CukCuk.Infrastructure\\CukCuk.Infrastructure.csproj|solutionrelative:cukcuk.infrastructure\\repository\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6A0373D-AB44-4612-86F7-802A68AEB95E}|CukCuk.Api\\CukCuk.Api.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A0373D-AB44-4612-86F7-802A68AEB95E}|CukCuk.Api\\CukCuk.Api.csproj|solutionrelative:cukcuk.api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{227C0A7C-7B6F-44AE-B08E-C4B32435EDB8}|MISACUKCUK.Api\\MISACUKCUK.Api.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\misacukcuk.api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{227C0A7C-7B6F-44AE-B08E-C4B32435EDB8}|MISACUKCUK.Api\\MISACUKCUK.Api.csproj|solutionrelative:misacukcuk.api\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CACFD9F-E4DB-4C36-ADA8-BB43B7A1233A}|CukCuk.Infrastructure\\CukCuk.Infrastructure.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.infrastructure\\repository\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CACFD9F-E4DB-4C36-ADA8-BB43B7A1233A}|CukCuk.Infrastructure\\CukCuk.Infrastructure.csproj|solutionrelative:cukcuk.infrastructure\\repository\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CACFD9F-E4DB-4C36-ADA8-BB43B7A1233A}|CukCuk.Infrastructure\\CukCuk.Infrastructure.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.infrastructure\\repository\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CACFD9F-E4DB-4C36-ADA8-BB43B7A1233A}|CukCuk.Infrastructure\\CukCuk.Infrastructure.csproj|solutionrelative:cukcuk.infrastructure\\repository\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.core\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|solutionrelative:cukcuk.core\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6A0373D-AB44-4612-86F7-802A68AEB95E}|CukCuk.Api\\CukCuk.Api.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6A0373D-AB44-4612-86F7-802A68AEB95E}|CukCuk.Api\\CukCuk.Api.csproj|solutionrelative:cukcuk.api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6A0373D-AB44-4612-86F7-802A68AEB95E}|CukCuk.Api\\CukCuk.Api.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.api\\controllers\\misabasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A0373D-AB44-4612-86F7-802A68AEB95E}|CukCuk.Api\\CukCuk.Api.csproj|solutionrelative:cukcuk.api\\controllers\\misabasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.core\\misaresources\\resourcevn.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
-      "RelativeMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|solutionrelative:cukcuk.core\\misaresources\\resourcevn.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.core\\misaresources\\resourceen.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
-      "RelativeMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|solutionrelative:cukcuk.core\\misaresources\\resourceen.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+      "AbsoluteMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|d:\\huykhoi\\misawebintern\\misaweb\\misaweb2024\\be\\misacukcuk\\cukcuk.core\\interfaces\\services\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{811A562E-1A81-4DFB-B0EF-6AAEB047BE7F}|CukCuk.Core\\CukCuk.Core.csproj|solutionrelative:cukcuk.core\\interfaces\\services\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,89 +34,80 @@
       "DocumentGroups": [
         {
           "DockedWidth": 177,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BaseRepository.cs",
-              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
-              "RelativeDocumentMoniker": "CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
-              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
-              "RelativeToolTip": "CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
-              "ViewState": "AQIAAOQAAAAAAAAAAAAcwO8AAAAjAAAA",
+              "DocumentIndex": 1,
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Infrastructure\\Repository\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "CukCuk.Infrastructure\\Repository\\EmployeeRepository.cs",
+              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Infrastructure\\Repository\\EmployeeRepository.cs",
+              "RelativeToolTip": "CukCuk.Infrastructure\\Repository\\EmployeeRepository.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAAwE4AAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T07:36:29.658Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-14T14:23:36.276Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "EmployeeService.cs",
               "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\Services\\EmployeeService.cs",
               "RelativeDocumentMoniker": "CukCuk.Core\\Services\\EmployeeService.cs",
               "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\Services\\EmployeeService.cs",
               "RelativeToolTip": "CukCuk.Core\\Services\\EmployeeService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAmwDoAAAAdAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwBQAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T07:23:20.645Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ResourceEN.resx",
-              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\MISAResources\\ResourceEN.resx",
-              "RelativeDocumentMoniker": "CukCuk.Core\\MISAResources\\ResourceEN.resx",
-              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\MISAResources\\ResourceEN.resx",
-              "RelativeToolTip": "CukCuk.Core\\MISAResources\\ResourceEN.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2024-08-07T06:48:56.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-14T09:17:28.755Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ResourceVN.resx",
-              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\MISAResources\\ResourceVN.resx",
-              "RelativeDocumentMoniker": "CukCuk.Core\\MISAResources\\ResourceVN.resx",
-              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\MISAResources\\ResourceVN.resx",
-              "RelativeToolTip": "CukCuk.Core\\MISAResources\\ResourceVN.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2024-08-07T06:47:58.096Z",
-              "EditorCaption": ""
+              "Title": "MISABaseController.cs",
+              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Api\\Controllers\\MISABaseController.cs",
+              "RelativeDocumentMoniker": "CukCuk.Api\\Controllers\\MISABaseController.cs",
+              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Api\\Controllers\\MISABaseController.cs",
+              "RelativeToolTip": "CukCuk.Api\\Controllers\\MISABaseController.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAQwCUAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-14T09:02:20.358Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Api\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "CukCuk.Api\\Controllers\\EmployeeController.cs",
               "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Api\\Controllers\\EmployeeController.cs",
               "RelativeToolTip": "CukCuk.Api\\Controllers\\EmployeeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "ViewState": "AQIAACsAAAAAAAAAAAAAwEEAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T06:46:46.162Z",
+              "WhenOpened": "2024-08-14T09:00:24.065Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 177,
-          "SelectedChildIndex": 0,
-          "Children": [
+            },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeesController.cs",
-              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\MISACUKCUK.Api\\Controllers\\EmployeesController.cs",
-              "RelativeDocumentMoniker": "MISACUKCUK.Api\\Controllers\\EmployeesController.cs",
-              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\MISACUKCUK.Api\\Controllers\\EmployeesController.cs",
-              "RelativeToolTip": "MISACUKCUK.Api\\Controllers\\EmployeesController.cs",
-              "ViewState": "AQIAADIBAAAAAAAAAAAYwCEBAAANAAAA",
+              "DocumentIndex": 5,
+              "Title": "IEmployeeService.cs",
+              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\Interfaces\\Services\\IEmployeeService.cs",
+              "RelativeDocumentMoniker": "CukCuk.Core\\Interfaces\\Services\\IEmployeeService.cs",
+              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Core\\Interfaces\\Services\\IEmployeeService.cs",
+              "RelativeToolTip": "CukCuk.Core\\Interfaces\\Services\\IEmployeeService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T07:33:17.168Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-14T08:55:49.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaseRepository.cs",
+              "DocumentMoniker": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
+              "RelativeDocumentMoniker": "CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
+              "ToolTip": "D:\\HuyKhoi\\MisaWebIntern\\MisaWeb\\MisaWeb2024\\BE\\MISACUKCUK\\CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
+              "RelativeToolTip": "CukCuk.Infrastructure\\Repository\\BaseRepository.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAAAowEIAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-14T08:49:52.457Z"
             }
           ]
         }

@@ -20,6 +20,24 @@ namespace CukCuk.Core.Services
             _employeeRepository = employeeRepository;
         }
 
+        /// <summary>
+        /// Validate dữ liệu đầu vào pageSize, pageIndex, thực hiện gọi repos để get
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        /// <exception cref="EmployeeValidateException"></exception>
+        public IEnumerable<Employee> GetPaging(int pageSize, int pageIndex)
+        {
+            // 1. pageSize, pageIndex phải > 1
+            if (pageSize < 1 || pageIndex < 1)
+            {
+                throw new EmployeeValidateException(ResourceVN.Validate_PageSize_PageIndex);
+            }
+            var res = _employeeRepository.GetPaging(pageSize, pageIndex);
+            return res;
+        }
+
         protected override void ValidateEmployee(Employee employee, Guid? employeeId = null)
         {
             //1.2 Check trùng mã
@@ -36,8 +54,12 @@ namespace CukCuk.Core.Services
             }
 
             // 1.4 Email đúng định dạng
-            if (!IsValidEmail(employee.Email))
-                throw new EmployeeValidateException(ResourceVN.ValidateError_EmailNotValid);
+            if (!string.IsNullOrEmpty(employee.Email))
+            {
+                if (!IsValidEmail(employee.Email))
+                    throw new EmployeeValidateException(ResourceVN.ValidateError_EmailNotValid);
+            }
+            
         }
 
         //Kiểm tra định dạng email
