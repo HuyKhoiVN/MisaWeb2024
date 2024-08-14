@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//xử lý DI
+// Xử lý DI
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
@@ -31,7 +31,7 @@ builder.Services.AddScoped<IPositionService, PostionService>();
 builder.Services.AddScoped<IPositionRepository, PositionRepository>();
 
 builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
-builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));    
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
 var app = builder.Build();
 
@@ -43,6 +43,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Kích hoạt CORS trước khi áp dụng Authorization
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

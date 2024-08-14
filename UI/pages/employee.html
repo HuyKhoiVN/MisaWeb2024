@@ -84,7 +84,7 @@
                     </div>
                     <div class="m-toolbar-right">
                         <button id="btnExcel" class="m-btn-excel"></button>
-                        <button id="btnRefresh" class="m-btn-refresh"></button>
+                        <a href="employee.html"><button id="btnRefresh" class="m-btn-refresh"></button></a>
                     </div>
                 </div>
                 <div class="m-page-grid">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="m-paging">
                         <!-- left -->
-                        <div class="m-paging-left">Tổng: 100</div>
+                        <div id="totalEmployees" class="m-paging-left">Tổng: 100</div>
                         <!-- center -->
                         
                         <!-- right -->
@@ -182,9 +182,7 @@
                                         <div class="m-col combobox-container" id="combobox-container-position">
                                             <div class="cbBranch combobox m-input" mvalue="1" onclick="toggleDropdown('combobox-container-position', 'dropdown-position')" id="cbxPositionId">Kỹ thuật viên</div>
                                             <div class="dropdown" id="dropdown-position">
-                                                <div class="dropdown-item" mvalue="1" onclick="selectItemNoIcon(this, 'combobox-container-position', 'cbxPositionId')">Giám đốc</div>
-                                                <div class="dropdown-item" mvalue="2" onclick="selectItemNoIcon(this, 'combobox-container-position', 'cbxPositionId')">Trưởng bộ phận</div>
-                                                <div class="dropdown-item" mvalue="3" onclick="selectItemNoIcon(this, 'combobox-container-position', 'cbxPositionId')">Kỹ thuật viên</div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -214,14 +212,9 @@
                                         <div class="m-col combobox-container" id="combobox-container-department">
                                             <div class="cbBranch combobox m-input"
                                                 onclick="toggleDropdown('combobox-container-department', 'dropdown-department')"
-                                                id="cbxDepartmentId">Phòng nhân sự</div>
+                                                id="cbxDepartmentId">Phòng ban</div>
                                             <div class="dropdown" id="dropdown-department">
-                                                <div class="dropdown-item"
-                                                    onclick="selectItemNoIcon(this, 'combobox-container-department', 'cbxDepartmentId')">Phòng kỹ
-                                                    thuật</div>
-                                                <div class="dropdown-item"
-                                                    onclick="selectItemNoIcon(this, 'combobox-container-department', 'cbxDepartmentId')">Phòng hành
-                                                    chính</div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -326,6 +319,8 @@
     <!-- show cbBox -->
     <script src="../js/components/combobox.js"></script>
     <script src="../js/components/toast.js"></script>
+    <script src="../js/components/department.js"></script>
+    <script src="../js/components/position.js"></script>
 
     <!-- js page -->
     <script src="../js/pages/employee.js"></script>

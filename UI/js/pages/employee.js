@@ -1,4 +1,4 @@
-//khai báo biến toàn cục
+// khai báo biến toàn cục
 var formMode = "edit";
 var employeeIdForUpdate = null;
 var empForEdit = null;
@@ -6,26 +6,31 @@ let employeesData = [];
 
 var currentPage = 1;
 var pageSize = 10;
-var totalPages = 1;
+var totalPages = 10;
+var totalEmployees = 1;
 
 
 
 $(document).ready(function () {
-    //-------->1. Load dữ liệu từ JSON
-    //-------->2. Hiển thị dữ liệu lên UI
-    loadData();
+    // -------->1. Load dữ liệu từ JSON
+    // -------->2. Hiển thị dữ liệu lên UI
+    GetTotal()
 
-    //-------->3. Tìm kiếm theo tên/empCode
+    // -------->3. Tìm kiếm theo tên/empCode
     $("#txtSearch").on("keyup", function() {
         let searchTerm = $(this).val().toLowerCase();
         let filteredData = employeesData.filter(employee => {
-            return employee.EmployeeCode.toLowerCase().includes(searchTerm) ||
-                   employee.FullName.toLowerCase().includes(searchTerm);
+            return employee.employeeCode.toLowerCase().includes(searchTerm) ||
+                   employee.fullName.toLowerCase().includes(searchTerm);
         });
         renderTable(filteredData);
     });
 
-    //-------->Phân trang
+    // -------->Phân trang
+    /*  1. Chọn số bản ghi: gán giá trị cho pageSize
+        2. Bấm next/prev: Tăng, giảm giá trị currentPage
+    */
+
     // Xử lý sự kiện khi chọn số bản ghi trên mỗi trang
     $(".m-paging-right .dropdown-item").click(function () {
         pageSize = parseInt($(this).text());
@@ -35,38 +40,43 @@ $(document).ready(function () {
 
     // Xử lý sự kiện khi nhấn nút trang trước
     $("#btnPrev").click(function () {
+        console.log(currentPage);
         if (currentPage > 1) {
             currentPage--;
-            renderTable(employeesData); // Hiển thị dữ liệu trang trước
+            loadData(); // Hiển thị dữ liệu trang trước
         }
     });
 
     // Xử lý sự kiện khi nhấn nút trang sau
     $("#btnNext").click(function () {
+        console.log(totalPages);
         if (currentPage < totalPages) {
             currentPage++;
-            renderTable(employeesData); // Hiển thị dữ liệu trang sau
+            loadData(); // Hiển thị dữ liệu trang sau
         }
     });
+    //------------------------------------------
 
-    //--------->Thêm mới nhân viên
+    // --------->Thêm mới nhân viên
     $("#btnAdd").click(function () {
         formMode = "add";
-        //--hiển thị form thêm mới
+        // --hiển thị form thêm mới
         $("#dlgDialog").show();
-        //--focus vào ô đầu tiên
+        // --focus vào ô đầu tiên
         $("#txtEmployeeCode").focus();
     })
 
-    //---3.2. ấn btn-close
+    // ---3.2. ấn btn-close
     $(".m-dialog-close").click(function () {
-        //ẩn form
+        // ẩn form
+        ClearDialog();
         $("#dlgDialog").hide();
     })
+    // ----------------------------------------
 
-    //add class
+    // add class
     
-    //---3.3. double click vào 1 dòng trong table
+    // ---3.3. double click vào 1 dòng trong table
     $(".m-table").on("dblclick", "tr", rowDblClick);
 
     $(".m-table").on("click", "tr", function (event) {
@@ -85,12 +95,12 @@ $(document).ready(function () {
     
                 let employee = $(this).data("entity");
     
-                employeeIdForUpdate = employee.EmployeeId;
+                employeeIdForUpdate = employee.employeeId;
                 empForEdit = employee;
     
                 $(".m-table-action .btn-delete").on("click", function() {
                     try {
-                        if (confirm(`Bạn có chắc chắn muốn xóa nhân viên ${employee.FullName} có mã là ${employee.EmployeeCode} không?`)) {
+                        if (confirm(`Bạn có chắc chắn muốn xóa nhân viên ${employee.fullName} có mã là ${employee.employeeCode} không?`)) {
                             RemoveEmployee(employeeIdForUpdate);
                         }
                     } catch (error) {
@@ -107,7 +117,7 @@ $(document).ready(function () {
     });    
 
     
-        //-----hiển thị trạng thái lỗi validate khi không nhập các trường bắt buộc:
+        // -----hiển thị trạng thái lỗi validate khi không nhập các trường bắt buộc:
         $("input[required]").blur(function () {
             let isValid = validateInputRequired(this);
             if (!isValid) {
@@ -118,9 +128,9 @@ $(document).ready(function () {
         });
         
 
-        //-----hiển thị trạng thái lỗi với email sai định dạng
+        // -----hiển thị trạng thái lỗi với email sai định dạng
         $("input[email]").blur(function () {
-            //email regex
+            // email regex
             let pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
             let errorMessage = "Email không đúng định dạng!";
@@ -133,9 +143,9 @@ $(document).ready(function () {
             }
         })
 
-        //-----hiển thị lỗi khi sdt sai định dạng
+        // -----hiển thị lỗi khi sdt sai định dạng
         $("#txtPhoneNumber").blur(function () {
-            //sdt regex
+            // sdt regex
             let pattern = /^\+?[0-9]*$/;
 
             let errorMessage = "Số điện thoại không đúng định dạng! Chỉ được phép chứa dấu + và số 0-9.";
@@ -147,46 +157,50 @@ $(document).ready(function () {
             }
         })
 
-    //4. Thực hiện hành động trong form thêm mới
+    // ---------------------------------------------------------------
+    // 4. Thực hiện hành động trong form thêm mới
     $("#btnSave").click(function () {
-        //---4.1. lấy dữ liệu từ form
+        // ---4.1. lấy dữ liệu từ form
 
-        //họ tên, mã nhân viên k được trống
-        //ngày sinh không lớn hơn ngày hiện tại
-        //email đúng định dạng
-        //sđt phải đúng định dạng
+        // họ tên, mã nhân viên k được trống
+        // ngày sinh không lớn hơn ngày hiện tại
+        // email đúng định dạng
+        // sđt phải đúng định dạng
 
-        let employeeCode = $("#txtEmployeeCode").val();
-        let fullName = $("#txtFullName").val();
-        let dateOfBirth = $("#dtDateOfBirth").val();
-        let gender = $('input[name="gender"]:checked').val();
-        let position = $("#cbxPositionId").attr('mvalue');
-        let identityNumber = $("#txtIdentityNumber").val();
-        let identityDate = $("#txtIdentityDate").val();
-        let department = $("#cbxDepartmentId").attr('mvalue');
-        let identityPlace = $("#txtIdentityPlace").val();
-        let address = $("#txtAddress").val();
-        let phoneNumber = $("#txtPhoneNumber").val();
-        let landlinePhone = $("#txtLandlinePhone").val();
-        let email = $("#txtEmail").val();
-        let bankAccount = $("#txtBankAccount").val();
-        let bankName = $("#txtBankName").val();
-        let bankBranch = $("#txtBankBranch").val();
+        let employeeCode = $("#txtEmployeeCode").val(); // employeeCode
+        let fullName = $("#txtFullName").val(); // fullName
+        let dateOfBirth = $("#dtDateOfBirth").val(); // dateOfBirth
 
-        //---4.2. Validate dữ liệu
-        //------alert mã nv
+        let gender = $('input[name="gender"]:checked').val(); // gender
+        gender = parseInt(gender, 10); // chuyển đổi về int (hệ 10)
+
+        let positionId = $("#cbxPositionId").attr('mvalue') || null; // positionId
+        let identityNumber = $("#txtIdentityNumber").val(); // identityNumber
+        let identityDate = $("#txtIdentityDate").val() || null; // identityDate
+        let departmentId = $("#cbxDepartmentId").attr('mvalue') || null; // departmentId
+        let identityPlace = $("#txtIdentityPlace").val(); // identityPlace
+        let address = $("#txtAddress").val(); // address
+        let phoneNumber = $("#txtPhoneNumber").val(); // phoneNumber
+        let lanelineNumber = $("#txtLandlinePhone").val(); // lanelineNumber
+        let email = $("#txtEmail").val(); // email
+        let bankNumber = $("#txtBankAccount").val(); // bankNumber
+        let bankName = $("#txtBankName").val(); // bankName
+        let bankBranch = $("#txtBankBranch").val(); // bankBranch
+
+        // ---4.2. Validate dữ liệu
+        // ------alert mã nv
         if(employeeCode == null || employeeCode === "") {
             alert(resource["VI"].employeeNotEmpty);
             return false;
         }
 
-        //------alert họ và tên
+        // ------alert họ và tên
         if(fullName == null || fullName === "") {
             alert("Họ tên không được để trống");
             return false;
         }
         
-        //------alert ngày sinh
+        // ------alert ngày sinh
         if(dateOfBirth) {
             dateOfBirth = new Date(dateOfBirth);
         }
@@ -195,71 +209,87 @@ $(document).ready(function () {
             return false;
         }
 
-        //-----alert nếu thông tin được điền chưa hợp lệ
+        // Chuyển đổi lại dob
+        dateOfBirth = $("#dtDateOfBirth").val() || null;
+
+        // -----alert nếu thông tin được điền chưa hợp lệ
         if ($(".m-input-error").length > 0) {
             alert("Vui lòng điền đúng các trường thông tin!");
             return false;
         }
 
-        //---4.3. Build object và thêm dữ liệu
-        let positionfix = "548dce5f-5f29-4617-725d-e2ec561b0f41";
-        let departmentfix = "75cce5a6-4f7f-3671-3cf3-eb0223d0a4f7";
+        // ---4.3. Build object và thêm dữ liệu
+        let positionfix = "d4ca430a-464b-11ef-9fd0-00163e0c7f26";
+        let departmentfix = "00eec814-464f-11ef-9fd0-00163e0c7f26";
 
-        //-----Khởi tạo đối tượng emp
+        // -----Khởi tạo đối tượng emp
         let employee = {
-            "EmployeeCode": employeeCode,
-            "FullName": fullName,
-            "Gender": gender,
-            "DateOfBirth": dateOfBirth,
-            "PhoneNumber": phoneNumber,
-            "Email": email,
-            "PositionId": positionfix,
-            "DepartmentId": departmentfix,
-            "Address": address
-        }
+            "employeeCode": employeeCode,
+            "fullName": fullName,
+            "gender": gender,
+            "dateOfBirth": dateOfBirth,
+            "phoneNumber": phoneNumber,
+            "email": email,
+            "identityNumber": identityNumber,
+            "indentityDate": identityDate,
+            "identityPlace": identityPlace,
+            "address": address,
+            "lanelineNumber": lanelineNumber,
+            "bankNumber": bankNumber,
+            "bankName": bankName,
+            "bankBranch": bankBranch,
+            "positionId": positionId,
+            "departmentId": departmentId,
+            "createdBy": "Huy Khoi",
+            "modifiedBy": "Huy Khoi",
+        };
+
         
-        //-----Hiện form loading, thực hiện truyền json emp
+        // -----Hiện form loading, thực hiện truyền json emp
         $(".m-loading").show();
-        //check formMode
+        // check formMode
         if (formMode == "add") {
             $.ajax({
                 type: "POST",
-                url: "https://cukcuk.manhnv.net/api/v1/Employees/",
+                url: "https://localhost:7177/api/v1/Employee",
                 data: JSON.stringify(employee),
                 dataType: "json",
                 contentType: "application/json",
                 success: function(response) {
-                    //sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
-                    //hiển thị toast ms
+                    // sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
+                    // hiển thị toast ms
                     showToast('success', 'Nhân viên đã được thêm.', ''); 
                     $("#dlgDialog").hide();
-                    loadData();
+                    GetTotal();
                     
                 },
                 error: function(response) {
+                    console.log(response);
+                    console.log(employee);
+                    console.log(response.responseJSON);
+                    console.log(response.responseJSON.userMsg);
                     $(".m-loading").hide();
-                    //console.log(response); // In ra response
+                    // console.log(response); // In ra response
                     let errorMsg = 'Có lỗi xảy ra';
-                    if (response.responseJSON && response.responseJSON.errors) {
+                    if (response.responseJSON || response.responseJSON.errors) {
                         // Lấy lỗi đầu tiên trong đối tượng errors
-                        let firstErrorField = Object.keys(response.responseJSON.errors)[0];
-                        errorMsg = response.responseJSON.errors[firstErrorField][0];
+                        errorMsg = response.responseJSON.userMsg;
                     }
     
-                    //hiển thị toast
+                    // hiển thị toast
                     showToast('error', errorMsg, '');
                 }
             });
         }else {
             $.ajax({
                 type: "PUT",
-                url: `https://cukcuk.manhnv.net/api/v1/Employees/${employeeIdForUpdate}`,
+                url: `https://localhost:7177/api/v1/Employee/${employeeIdForUpdate}`,
                 data: JSON.stringify(employee),
                 dataType: "json",
                 contentType: "application/json",
                 success: function(response) {
-                    //sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
-                    //hiển thị toast ms
+                    // sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
+                    // hiển thị toast ms
                     showToast('success', 'Nhân viên đã được sửa.', ''); 
                     $("#dlgDialog").hide();
                     loadData();
@@ -267,16 +297,15 @@ $(document).ready(function () {
                 },
                 error: function(response) {
                     $(".m-loading").hide();
-                    //console.log(response); // In ra response
+                    // console.log(response); // In ra response
                     let errorMsg = 'Có lỗi xảy ra';
-                    if (response.responseJSON && response.responseJSON.errors) {
+                    if (response.responseJSON || response.responseJSON.errors) {
                         // Lấy lỗi đầu tiên trong đối tượng errors
-                        let firstErrorField = Object.keys(response.responseJSON.errors)[0];
-                        errorMsg = response.responseJSON.errors[firstErrorField][0];
+                        errorMsg = response.responseJSON.userMsg;
                     }
                     console.log(response);
         
-                    //hiển thị toast
+                    // hiển thị toast
                     showToast('error', errorMsg, '');
                 }
             });
@@ -284,21 +313,21 @@ $(document).ready(function () {
     })
 })
 
-//------------------Function-------------
+// ------------------Function-------------
 
-//validate bắt buộc nhập
+// validate bắt buộc nhập
 function validateInputRequired(input) {
     let value = $(input).val();
     if(value == null || value === "") {
-        //set style cho ô nhập liệu
+        // set style cho ô nhập liệu
         $(input).addClass("m-input-error");
 
-        //set thông tin tương ứng khi người dùng hover vào ô nhập liệu
+        // set thông tin tương ứng khi người dùng hover vào ô nhập liệu
         $(input).attr("title", "Thông tin này không được để trống!");
 
         return false;
     } else {
-        //xóa style cho ô nhập liệu
+        // xóa style cho ô nhập liệu
         $(input).removeClass("m-input-error");
         $(input).removeAttr("title");
 
@@ -306,7 +335,7 @@ function validateInputRequired(input) {
     }
 }
 
-//validate với regex pattern
+// validate với regex pattern
 function validateInput(input, pattern, errorMessage) {
     let value = $(input).val();
 
@@ -323,7 +352,7 @@ function validateInput(input, pattern, errorMessage) {
         $(input).attr("title", errorMessage);
         return false;
     } else {
-        //xóa style cho ô nhập liệu
+        // xóa style cho ô nhập liệu
         $(input).removeClass("m-input-error");
         $(input).removeAttr("title");
         return true;
@@ -332,23 +361,29 @@ function validateInput(input, pattern, errorMessage) {
 
 /*
     Load dữ liệu từ API
+    1. Gọi API với giá trị pageSize, currentPage (mặc định 10, 1)
+    2. Gán giá trị employeesData cho data trả về
+    3. Duyệt từng employee, gán giá trị cho các biến và truyền vào html
+    4. Cho table append chuỗi html
  */
 function loadData() {
-    //clear dữ liệu cũ
+    // clear dữ liệu cũ
     $("#tableEmployee tbody").empty();
 
-    //clear dialog
+    // clear dialog
     ClearDialog();
-    //1. Gọi API lấy dữ liệu
-    //hiển thị loading
+
+    // 1. Gọi API lấy dữ liệu
+    // hiển thị loading
     $(".m-loading").show();
     $.ajax({
         type: "GET",
-        url: "https://cukcuk.manhnv.net/api/v1/Employees",
+        url: `https://localhost:7177/api/v1/Employee/getpaging?pageSize=${pageSize}&pageIndex=${currentPage}`,
         success: function (response) {
-            //khởi tạo biến đếm
+            // khởi tạo biến đếm
             employeesData = response;
-            totalPages = Math.ceil(employeesData.length / pageSize);
+            
+            totalPages = Math.ceil(totalEmployees / pageSize);
             renderTable(response);
             $(".m-loading").hide();
         },
@@ -360,18 +395,18 @@ function loadData() {
 
 function renderTable(data) {
     $("#tableEmployee tbody").empty();
-    let index = 1 + (currentPage - 1) * pageSize;
-    let startIndex = (currentPage - 1) * pageSize;
-    let endIndex = startIndex + pageSize;
-    let pageData = data.slice(startIndex, endIndex); // Lấy dữ liệu trang hiện tại
+     let index = 1 + (currentPage - 1) * pageSize;
+    // let startIndex = (currentPage - 1) * pageSize;
+    // let endIndex = startIndex + pageSize;
+    // let pageData = data.slice(startIndex, endIndex); // Lấy dữ liệu trang hiện tại
     
-    for (const employee of pageData) {
-        let employeeCode = employee.EmployeeCode;
-        let fullName = employee.FullName;
-        let genderName = employee.GenderName;
-        let dob = employee.DateOfBirth;
-        let email = employee.Email;
-        let address = employee.Address;
+    for (const employee of data) {
+        let employeeCode = employee.employeeCode;
+        let fullName = employee.fullName;
+        let genderName = employee.genderName;
+        let dob = employee.dateOfBirth;
+        let email = employee.email;
+        let address = employee.address;
 
         if (dob) {
             dob = new Date(dob);
@@ -435,44 +470,85 @@ function rowDblClick() {
     formMode = "edit";
     let employee = $(this).data("entity");
 
-    employeeIdForUpdate = employee.EmployeeId;
+    employeeIdForUpdate = employee.employeeId;
     empForEdit = employee;
     dialogDisplay();
 }
 
 function dialogDisplay() {
-    //hiển thị form
-    $("#txtEmployeeCode").val(empForEdit.EmployeeCode);
-    $("#txtFullName").val(empForEdit.FullName);
-    $('input[name="gender"]:checked').val(empForEdit.Gender);
-    $("#txtAddress").val(empForEdit.Address);
-    $("#txtPhoneNumber").val(empForEdit.PhoneNumber);
-    $("#txtEmail").val(empForEdit.Email);
+    // hiển thị form
+    // Hiển thị các thông tin nhân viên lên form
+    $("#txtEmployeeCode").val(empForEdit.employeeCode);
+    $("#txtFullName").val(empForEdit.fullName);
+    
+    // Chuyển định dạng dateOffBirth chỉ lấy yyyy/mm/dd
+    var dob = empForEdit.dateOfBirth;
+    if (typeof dob === 'string' && dob !== null) {
+        dob = dob.split('T')[0];
+    }
 
+    $("#dtDateOfBirth").val(dob);
+
+    // Chọn radio button theo giá trị của empForEdit.gender
+    $('input[name="gender"][value="' + empForEdit.gender + '"]').prop("checked", true);
+
+    $("#txtIdentityNumber").val(empForEdit.identityNumber);
+
+    var idd = empForEdit.indentityDate;
+    if (typeof idd === 'string' && idd !== null) {
+        idd = idd.split('T')[0];
+    }
+
+    $("#txtIdentityDate").val(idd);
+    $("#txtIdentityPlace").val(empForEdit.identityPlace);
+    $("#txtAddress").val(empForEdit.address);
+    $("#txtPhoneNumber").val(empForEdit.phoneNumber);
+    $("#txtLandlinePhone").val(empForEdit.lanelineNumber);
+    $("#txtEmail").val(empForEdit.email);
+    $("#txtBankAccount").val(empForEdit.bankNumber);
+    $("#txtBankName").val(empForEdit.bankName);
+    $("#txtBankBranch").val(empForEdit.bankBranch);
+
+    updateSelectedItem('cbxDepartmentId', 'dropdown-department', empForEdit.departmentId);
+    updateSelectedItem('cbxPositionId', 'dropdown-position', empForEdit.positionId);
+
+    // Hiển thị dialog
     $("#dlgDialog").show();
 }
 
-/* Edit Employee */
-function EditEmployee() {
+function updateSelectedItem(containerId, dropdownId, value) {
+    // Xóa class selected từ tất cả các dropdown-item khác
+    $('#' + dropdownId + ' .dropdown-item').removeClass('selected');
+
+    // Tìm dropdown-item tương ứng với giá trị được chọn
+    var $selectedItem = $('#' + dropdownId + ' .dropdown-item[mvalue="' + value + '"]');
     
+    if ($selectedItem.length > 0) {
+        // Cập nhật text và mvalue cho combobox
+        $('#' + containerId).text($selectedItem.text());
+        $('#' + containerId).attr('mvalue', value);
+
+        // Thêm class selected cho dropdown-item được chọn
+        $selectedItem.addClass('selected');
+    }
 }
 
 /* Remove a Employee */
 function RemoveEmployee(empId) {
     $.ajax({
         type: "DELETE",
-        url: `https://cukcuk.manhnv.net/api/v1/Employees/${empId}`,
+        url: `https://localhost:7177/api/v1/Employee/${empId}`,
         success: function(response) {
-            //sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
-            //hiển thị toast ms
+            // sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
+            // hiển thị toast ms
             showToast('success', `Xoá thành công nhân viên ${empId}`, ''); 
             $("#dlgDialog").hide();
-            loadData();
+            GetTotal();
             
         },
         error: function(response) {
             $(".m-loading").hide();
-            //console.log(response); // In ra response
+            // console.log(response); // In ra response
             let errorMsg = 'Có lỗi xảy ra';
             if (response.responseJSON && response.responseJSON.errors) {
                 // Lấy lỗi đầu tiên trong đối tượng errors
@@ -480,7 +556,7 @@ function RemoveEmployee(empId) {
                 errorMsg = response.responseJSON.errors[firstErrorField][0];
             }
 
-            //hiển thị toast
+            // hiển thị toast
             showToast('error', errorMsg, '');
         }
     });
@@ -489,10 +565,10 @@ function RemoveEmployee(empId) {
 function GetEmpById(employeeIdForUpdate) {   
     $.ajax({
         type: "GET",
-        url: `https://cukcuk.manhnv.net/api/v1/Employees/${employeeIdForUpdate}`,
+        url: `https://localhost:7177/api/v1/Employee/${employeeIdForUpdate}`,
         success: function(response) {
-            //sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
-            //hiển thị toast ms
+            // sau khi thực hiện thêm thì ẩn loading, ấn form chi tiết, load lại dữ liệu:
+            // hiển thị toast ms
             showToast('success', 'Lấy thành công nhân viên', ''); 
             $("#dlgDialog").hide();
             loadData();
@@ -500,7 +576,7 @@ function GetEmpById(employeeIdForUpdate) {
         },
         error: function(response) {
             $(".m-loading").hide();
-            //console.log(response); // In ra response
+            // console.log(response); // In ra response
             let errorMsg = 'Có lỗi xảy ra';
             if (response.responseJSON && response.responseJSON.errors) {
                 // Lấy lỗi đầu tiên trong đối tượng errors
@@ -508,8 +584,24 @@ function GetEmpById(employeeIdForUpdate) {
                 errorMsg = response.responseJSON.errors[firstErrorField][0];
             }
 
-            //hiển thị toast
+            // hiển thị toast
             showToast('error', errorMsg, '');
         }
     });
+}
+
+// Lấy tổng số nhân viên
+function GetTotal() {
+    $.ajax({
+        type: "GET",
+        url: `https://localhost:7177/api/v1/Employee/GetTotalEmployeeCount`,
+        success: function (response) {
+            totalEmployees = response;
+            $(".m-paging .m-paging-left").html(`Tổng: ${totalEmployees}`);
+            loadData();
+        },
+        error: function(response) {
+            showToast("error", response, "");
+        }
+    })
 }

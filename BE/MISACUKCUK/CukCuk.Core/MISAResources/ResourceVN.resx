@@ -171,4 +171,7 @@
   <data name="ValidateError_NotNull" xml:space="preserve">
     <value>không được phép để trống trường dữ liệu này</value>
   </data>
+  <data name="Validate_PageSize_PageIndex" xml:space="preserve">
+    <value>Số trang và số phần tử mỗi trang phải lớn hơn 1</value>
+  </data>
 </root>

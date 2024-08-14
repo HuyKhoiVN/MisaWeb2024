@@ -27,6 +27,12 @@ function selectItem(item, containerId, inputId) {
 }
 
 // Hàm chọn một mục trong dropdown không có icon trỏ xuống
+/* 
+    1. Lấy ra item được chọn (this), gán giá trị cho 2 attr: text, mvalue (id)
+    2. Thêm class selected cho item
+    3. Đóng dropdown
+*/
+
 function selectItemNoIcon(item, containerId, inputId) {
     const $item = $(item);
     const $comboboxInput = $('#' + inputId);
